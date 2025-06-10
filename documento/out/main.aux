@@ -1,0 +1,130 @@
+\relax 
+\providecommand\babel@aux[2]{}
+\@nameuse{bbl@beforestart}
+\catcode `"\active 
+\catcode `<\active 
+\catcode `>\active 
+\@nameuse{es@quoting}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\babel@aux{spanish}{}
+\citation{colab_notebook}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introducción}{7}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Definición del Proyecto}{7}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Objetivo}{7}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Expectativas}{7}{subsection.2.2}\protected@file@percent }
+\citation{accuracy_metric}
+\citation{precision_metric}
+\citation{recall_metric}
+\citation{fscore_metric}
+\citation{roc_metric}
+\citation{kaggle_dataset}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Métricas de Evaluación}{8}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Exploración de Datos}{8}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Descripción de Datos}{8}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Identificadores y Metadatos del Survey}{9}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Posición y Movimiento}{9}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Magnitudes Fotométricas}{9}{subsubsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Parámetros Morfológicos}{9}{subsubsection.3.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Parámetros de Stokes}{10}{subsubsection.3.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Revisión de Calidad de Datos}{10}{subsubsection.3.1.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Información general del dataset obtenida con df.info(). Se confirma la estructura completa con 4,000,000 entradas, 51 columnas sin valores nulos, y un uso de memoria de 1.5+ GB. Los tipos de datos incluyen enteros (int64), flotantes (float64) y objetos (object) para la variable objetivo.}}{11}{figure.1}\protected@file@percent }
+\newlabel{fig:info_dataset}{{1}{11}{Información general del dataset obtenida con df.info(). Se confirma la estructura completa con 4,000,000 entradas, 51 columnas sin valores nulos, y un uso de memoria de 1.5+ GB. Los tipos de datos incluyen enteros (int64), flotantes (float64) y objetos (object) para la variable objetivo}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.7}Estadísticas Descriptivas}{11}{subsubsection.3.1.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Estadísticas descriptivas - Ejemplo: Variables de identificación, posición y magnitudes PSF. Se observa que todas las variables tienen el conteo completo de 4,000,000 observaciones, confirmando la ausencia de valores faltantes.}}{12}{figure.2}\protected@file@percent }
+\newlabel{fig:describe1}{{2}{12}{Estadísticas descriptivas - Ejemplo: Variables de identificación, posición y magnitudes PSF. Se observa que todas las variables tienen el conteo completo de 4,000,000 observaciones, confirmando la ausencia de valores faltantes}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Distribución de Datos}{12}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Balance de Clases}{12}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distribución de las clases en el dataset. Se observa que las variables tienen el conteo completo de 4,000,000 observaciones.}}{12}{figure.3}\protected@file@percent }
+\newlabel{fig:count}{{3}{12}{Distribución de las clases en el dataset. Se observa que las variables tienen el conteo completo de 4,000,000 observaciones}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Análisis de Distribuciones por Variable}{13}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Histogramas de variables con distribuciones relativamente normales. Se muestran ejemplos representativos de las 52 columnas del dataset. Estas variables requieren preprocesamiento mínimo y son candidatas ideales para el escalado estándar.}}{13}{figure.4}\protected@file@percent }
+\newlabel{fig:variables_normales}{{4}{13}{Histogramas de variables con distribuciones relativamente normales. Se muestran ejemplos representativos de las 52 columnas del dataset. Estas variables requieren preprocesamiento mínimo y son candidatas ideales para el escalado estándar}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Histogramas de variables con distribuciones altamente sesgadas. Se observa la concentración de valores cerca de cero y colas extremas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos que ilustran los patrones identificados en el análisis completo.}}{14}{figure.5}\protected@file@percent }
+\newlabel{fig:variables_sesgadas}{{5}{14}{Histogramas de variables con distribuciones altamente sesgadas. Se observa la concentración de valores cerca de cero y colas extremas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos que ilustran los patrones identificados en el análisis completo}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Identificación de Valores Atípicos}{15}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Boxplots de magnitudes fotométricas mostrando la presencia de valores atípicos. Estos outliers representan objetos astronómicos reales (muy brillantes o muy débiles) y contienen información valiosa para la clasificación.}}{15}{figure.6}\protected@file@percent }
+\newlabel{fig:boxplot1}{{6}{15}{Boxplots de magnitudes fotométricas mostrando la presencia de valores atípicos. Estos outliers representan objetos astronómicos reales (muy brillantes o muy débiles) y contienen información valiosa para la clasificación}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Boxplots de parámetros de Stokes y variables de movimiento. Se observa la concentración extrema de valores cerca de cero y la presencia de outliers exagerados, especialmente en los parámetros q\_* y u\_*.}}{15}{figure.7}\protected@file@percent }
+\newlabel{fig:boxplot2}{{7}{15}{Boxplots de parámetros de Stokes y variables de movimiento. Se observa la concentración extrema de valores cerca de cero y la presencia de outliers exagerados, especialmente en los parámetros q\_* y u\_*}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Boxplots de parámetros morfológicos (relaciones de ejes y algunos histogramas adicionales). Las variables expAB\_* muestran distribuciones más controladas, mientras que otras variables presentan comportamientos diversos. Debido a las 52 columnas del dataset, se presentan ejemplos representativos.}}{15}{figure.8}\protected@file@percent }
+\newlabel{fig:boxplot3}{{8}{15}{Boxplots de parámetros morfológicos (relaciones de ejes y algunos histogramas adicionales). Las variables expAB\_* muestran distribuciones más controladas, mientras que otras variables presentan comportamientos diversos. Debido a las 52 columnas del dataset, se presentan ejemplos representativos}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Correlación de Datos}{16}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Correlación con la Variable Objetivo}{16}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Correlación de todas las variables con la variable objetivo (type\_numeric). Las variables con correlaciones más altas (en valor absoluto) son las más discriminativas para la clasificación.}}{16}{figure.9}\protected@file@percent }
+\newlabel{fig:correlacion_target}{{9}{16}{Correlación de todas las variables con la variable objetivo (type\_numeric). Las variables con correlaciones más altas (en valor absoluto) son las más discriminativas para la clasificación}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Matriz de Correlación Completa}{17}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Matriz de correlación entre todas las variables del dataset. Los colores más intensos indican correlaciones más fuertes (positivas en azul, negativas en amarillo). Se observan bloques de alta correlación entre variables del mismo tipo (e.g., magnitudes en diferentes filtros, radios en diferentes bandas).}}{17}{figure.10}\protected@file@percent }
+\newlabel{fig:matriz_correlacion}{{10}{17}{Matriz de correlación entre todas las variables del dataset. Los colores más intensos indican correlaciones más fuertes (positivas en azul, negativas en amarillo). Se observan bloques de alta correlación entre variables del mismo tipo (e.g., magnitudes en diferentes filtros, radios en diferentes bandas)}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Exportación para Análisis Detallado}{17}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Preparación de Datos}{18}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Limpieza}{18}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Verificación de Valores Faltantes y Duplicados}{18}{subsubsection.4.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Eliminación de Variables No Informativas}{18}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Codificación de la Variable Objetivo}{19}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Selección de Variables}{19}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Criterios de Selección}{19}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Variables Seleccionadas}{19}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Preprocesado (Logaritmo, RobustScaler)}{20}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Arquitectura del Pipeline de Preprocesado}{20}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar.}}{20}{figure.11}\protected@file@percent }
+\newlabel{fig:pipeline_preprocesado}{{11}{20}{Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar}{figure.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Transformación Logarítmica}{20}{subsubsection.4.3.2}\protected@file@percent }
+\citation{sklearn_robustscaler}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning.}}{21}{figure.12}\protected@file@percent }
+\newlabel{fig:transformacion_logaritmica}{{12}{21}{Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning}{figure.12}{}}
+\citation{sklearn_simpleimputer}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Selección de RobustScaler}{22}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Estrategia de Imputación}{22}{subsubsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.5}Optimización de Rendimiento}{22}{subsubsection.4.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Modelos de Machine Learning}{23}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Random Forest}{23}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble.}}{23}{figure.13}\protected@file@percent }
+\newlabel{fig:pipeline_rf}{{13}{23}{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble}{figure.13}{}}
+\citation{sklearn_rf}
+\citation{sklearn_lr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Logistic Regression}{24}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Pipeline completo para Regresión Logística, donde el preprocesado es crucial para la normalización de características.}}{24}{figure.14}\protected@file@percent }
+\newlabel{fig:pipeline_lr}{{14}{24}{Pipeline completo para Regresión Logística, donde el preprocesado es crucial para la normalización de características}{figure.14}{}}
+\citation{sklearn_svm}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}SVM}{25}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Pipeline completo para SVM, donde la normalización de datos es fundamental para el correcto funcionamiento del algoritmo.}}{25}{figure.15}\protected@file@percent }
+\newlabel{fig:pipeline_svm}{{15}{25}{Pipeline completo para SVM, donde la normalización de datos es fundamental para el correcto funcionamiento del algoritmo}{figure.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}KNN}{25}{subsection.5.4}\protected@file@percent }
+\citation{sklearn_knn}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Pipeline completo para KNN, donde la normalización es crítica debido a la sensibilidad del algoritmo a la escala de las características.}}{26}{figure.16}\protected@file@percent }
+\newlabel{fig:pipeline_knn}{{16}{26}{Pipeline completo para KNN, donde la normalización es crítica debido a la sensibilidad del algoritmo a la escala de las características}{figure.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Resultados}{27}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Comparación de Modelos}{27}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Resultados Comparativos Generales}{27}{subsubsection.6.1.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales.}}{27}{table.1}\protected@file@percent }
+\newlabel{tab:comparacion_completa}{{1}{27}{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales}{table.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Análisis de Sobreajuste}{27}{subsubsection.6.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste.}}{27}{table.2}\protected@file@percent }
+\newlabel{tab:analisis_overfitting}{{2}{27}{Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste}{table.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}Interpretación de Resultados}{27}{subsubsection.6.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.4}Selección del Modelo Final}{27}{subsubsection.6.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}RandomizedSearch}{28}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Modelo Final}{28}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Probar con Dataset de Test}{29}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Matriz de confusión del modelo final en el dataset de test. Se muestran las predicciones para 1 millón de objetos astronómicos clasificados como STAR (0) o GALAXY (1).}}{29}{figure.17}\protected@file@percent }
+\newlabel{fig:matriz_confusion}{{17}{29}{Matriz de confusión del modelo final en el dataset de test. Se muestran las predicciones para 1 millón de objetos astronómicos clasificados como STAR (0) o GALAXY (1)}{figure.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusión}{31}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Conclusiones del Proyecto}{31}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Problemas Enfrentados y Soluciones}{31}{subsection.7.2}\protected@file@percent }
+\bibcite{sklearn_rf}{1}
+\bibcite{sklearn_lr}{2}
+\bibcite{sklearn_svm}{3}
+\bibcite{sklearn_knn}{4}
+\bibcite{kaggle_dataset}{5}
+\bibcite{colab_notebook}{6}
+\bibcite{sklearn_robustscaler}{7}
+\bibcite{sklearn_simpleimputer}{8}
+\bibcite{accuracy_metric}{9}
+\bibcite{recall_metric}{10}
+\bibcite{fscore_metric}{11}
+\bibcite{precision_metric}{12}
+\bibcite{roc_metric}{13}
+\@writefile{toc}{\contentsline {section}{Bibliografía}{33}{subsection.7.2}\protected@file@percent }
+\gdef \@abspage@last{33}

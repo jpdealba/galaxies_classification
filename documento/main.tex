@@ -1,0 +1,1154 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc} % UTF-8 encoding
+\usepackage[spanish]{babel} % Spanish language support
+\usepackage{hyperref} % For clickable links in TOC
+\usepackage{geometry} % For page margins
+\usepackage{float} % For better figure placement
+\usepackage{amsmath} % For mathematical equations
+\usepackage{amsfonts} % For mathematical fonts
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={red!50!black},
+    urlcolor={blue!80!black}
+}
+
+
+\geometry{margin=1in} % Set page margins
+
+\title{Introducción al Aprendizaje Automático: Clasificación Binaria de Estrellas y Galaxias}
+\author{Juan Pablo de Alba Tamayo}
+\date{June 2025}
+
+\begin{document}
+
+% Primera página: Logo
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{logo.png}
+\end{figure}
+
+\newpage
+
+% Segunda página: Título
+\maketitle
+
+\newpage
+
+% Tercera página: Índice
+\tableofcontents
+
+\newpage
+
+% Cuarta página: Lista de figuras
+\listoffigures
+
+\newpage
+
+% Quinta página: Lista de tablas
+\listoftables
+
+\newpage
+
+% Contenido del documento
+\section{Introducción}
+
+La astronomía moderna se enfrenta al desafío de procesar y clasificar enormes volúmenes de datos provenientes de observaciones astronómicas. Con el advenimiento de telescopios de gran campo y estudios de cielo profundo, la cantidad de objetos celestes detectados ha crecido exponencialmente, haciendo impracticable la clasificación manual de cada uno de estos objetos. En este contexto, la diferenciación entre estrellas y galaxias representa uno de los problemas fundamentales de clasificación en astronomía, ya que estas dos clases de objetos constituyen la mayoría de las fuentes puntuales detectadas en los estudios fotométricos.
+
+El aprendizaje automático ha emergido como una herramienta poderosa para abordar este tipo de problemas de clasificación a gran escala. Los algoritmos de machine learning pueden identificar patrones complejos en las características observacionales de los objetos astronómicos, permitiendo una clasificación automática y eficiente. Las técnicas de clasificación binaria son particularmente útiles en este contexto, ya que pueden distinguir entre dos clases bien definidas basándose en características como magnitudes fotométricas, colores, morfología y otras propiedades observables.
+
+Este proyecto tiene como objetivo desarrollar y evaluar diferentes modelos de aprendizaje automático para la clasificación binaria de estrellas y galaxias utilizando datos fotométricos. Se implementarán y compararán varios algoritmos, incluyendo Random Forest, Regresión Logística, Máquinas de Vectores de Soporte (SVM) y K-Nearest Neighbors (KNN), con el fin de determinar cuál proporciona el mejor rendimiento para esta tarea específica. El análisis incluirá la exploración de los datos, el preprocesamiento adecuado, la selección de características relevantes y la optimización de hiperparámetros para obtener el modelo más efectivo. La implementación completa del proyecto se encuentra disponible en un notebook interactivo \cite{colab_notebook}.
+
+
+\section{Definición del Proyecto}
+% Agregar contenido aquí
+
+\subsection{Objetivo}
+
+El objetivo principal de este proyecto es desarrollar un sistema de clasificación automática que permita distinguir eficientemente entre estrellas y galaxias utilizando técnicas de aprendizaje automático. Específicamente, se busca:
+
+\begin{itemize}
+    \item Implementar y comparar el rendimiento de cuatro algoritmos de clasificación binaria: Random Forest, Regresión Logística, Máquinas de Vectores de Soporte (SVM) y K-Nearest Neighbors (KNN).
+    \item Realizar un análisis exhaustivo de los datos fotométricos disponibles, incluyendo la exploración de patrones, distribuciones y correlaciones entre variables.
+    \item Aplicar técnicas de preprocesamiento de datos apropiadas, como transformaciones logarítmicas y escalado robusto, para optimizar el rendimiento de los modelos.
+    \item Optimizar los hiperparámetros de cada algoritmo mediante técnicas de búsqueda aleatoria (RandomizedSearch) para maximizar su efectividad.
+    \item Identificar el modelo que proporcione la mejor capacidad de generalización y precisión en la clasificación de objetos astronómicos no vistos previamente.
+\end{itemize}
+
+\subsection{Expectativas}
+
+Se espera que al finalizar este proyecto se haya logrado:
+
+\begin{itemize}
+    \item Alcanzar una precisión de clasificación superior al 90\% en el conjunto de datos de prueba, considerando la naturaleza bien diferenciada de las características entre estrellas y galaxias.
+    \item Demostrar que los algoritmos ensemble como Random Forest proporcionan un rendimiento superior debido a su capacidad de manejar características complejas y no lineales presentes en los datos astronómicos.
+    \item Identificar las variables fotométricas más discriminativas para la clasificación, contribuyendo al conocimiento sobre qué características observacionales son más útiles para esta tarea.
+    \item Establecer un pipeline de procesamiento de datos robusto que pueda ser aplicado a futuros conjuntos de datos astronómicos similares.
+    \item Proporcionar un análisis comparativo detallado que sirva como referencia para futuros trabajos en clasificación astronómica automatizada.
+\end{itemize}
+
+\subsubsection{Métricas de Evaluación}
+
+Para evaluar el rendimiento de los modelos de clasificación, se utilizarán las siguientes métricas estándar:
+
+\textbf{Exactitud (Accuracy):} Representa la proporción de predicciones correctas sobre el total de predicciones realizadas. Es la métrica más intuitiva pero puede ser engañosa en datasets desbalanceados \cite{accuracy_metric}.
+
+\begin{equation}
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+
+\textbf{Precisión (Precision):} Mide la proporción de verdaderos positivos entre todas las predicciones positivas. Responde a la pregunta: "De todos los objetos que el modelo clasificó como galaxias, ¿qué porcentaje realmente son galaxias?" \cite{precision_metric}
+
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\textbf{Sensibilidad o Recall:} Mide la proporción de verdaderos positivos que fueron correctamente identificados. Responde a la pregunta: "De todas las galaxias reales en el dataset, ¿qué porcentaje fue correctamente identificado por el modelo?" \cite{recall_metric}
+
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+\textbf{F1-Score:} Es la media armónica entre precisión y recall, proporcionando un balance entre ambas métricas. Es especialmente útil cuando se busca un equilibrio entre no perder objetos importantes (alto recall) y mantener predicciones confiables (alta precisión) \cite{fscore_metric}.
+
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+\textbf{Área Bajo la Curva ROC (AUC-ROC):} Mide la capacidad del modelo para distinguir entre las dos clases a través de todos los posibles umbrales de clasificación. Un valor de 0.5 indica un rendimiento aleatorio, mientras que 1.0 representa una clasificación perfecta \cite{roc_metric}.
+
+Donde: TP = Verdaderos Positivos, TN = Verdaderos Negativos, FP = Falsos Positivos, FN = Falsos Negativos.
+
+\section{Exploración de Datos}
+
+\subsection{Descripción de Datos}
+
+Los datos utilizados en este proyecto provienen del Sloan Digital Sky Survey (SDSS), uno de los estudios astronómicos más comprehensivos jamás realizados \cite{kaggle_dataset}. El conjunto de datos se divide en dos partes principales:
+
+\begin{itemize}
+    \item \textbf{Dataset de Entrenamiento (train.csv):} Contiene aproximadamente 4 millones de observaciones, divididas equitativamente entre 2 millones de estrellas y 2 millones de galaxias. Este conjunto se utiliza para entrenar y validar los modelos de clasificación.
+    \item \textbf{Dataset de Prueba (test.csv):} Contiene 1 millón de observaciones adicionales que se utilizan exclusivamente para evaluar el rendimiento final de los modelos entrenados.
+\end{itemize}
+
+Cada observación en el dataset representa un objeto astronómico y contiene 50 variables que describen diferentes aspectos de sus propiedades observacionales. Estas variables se pueden agrupar en las siguientes categorías:
+
+\subsubsection{Identificadores y Metadatos del Survey}
+
+\begin{itemize}
+    \item \textbf{objID:} Identificador único del SDSS compuesto por varios componentes técnicos del survey
+    \item \textbf{run:} Número de la secuencia de observación específica
+    \item \textbf{camcol:} Columna de la cámara utilizada (el SDSS tiene 6 columnas de CCD)
+    \item \textbf{field:} Número del campo observado dentro de la secuencia
+    \item \textbf{type:} Clasificación del tipo de objeto (estrella, galaxia) - esta es nuestra variable objetivo
+\end{itemize}
+
+\subsubsection{Posición y Movimiento}
+
+\begin{itemize}
+    \item \textbf{rowv, colv:} Componentes de velocidad del objeto en grados por día, que pueden indicar movimiento propio (especialmente relevante para estrellas cercanas)
+    \item \textbf{ra, dec:} Ascensión recta y declinación, que son las coordenadas estándar para localizar objetos en el cielo (equivalente a longitud y latitud terrestres)
+    \item \textbf{b, l:} Latitud y longitud galácticas, que indican la posición del objeto relativa al plano de nuestra galaxia
+\end{itemize}
+
+\subsubsection{Magnitudes Fotométricas}
+
+Las magnitudes miden el brillo aparente de los objetos en diferentes filtros de color. El sistema fotométrico del SDSS utiliza cinco filtros estándar:
+
+\begin{itemize}
+    \item \textbf{psfMag\_u, psfMag\_g, psfMag\_r, psfMag\_i, psfMag\_z:} Magnitudes PSF (Point Spread Function) en los filtros ultravioleta, verde, rojo, infrarrojo cercano e infrarrojo, respectivamente. Estas magnitudes asumen que el objeto es puntual.
+    \item \textbf{u, g, r, i, z:} Alias abreviados para las magnitudes modelo en cada filtro, que representan el mejor ajuste entre modelos exponenciales y de Vaucouleurs.
+    \item \textbf{modelFlux\_u, modelFlux\_g, modelFlux\_r, modelFlux\_i, modelFlux\_z:} Flujos correspondientes a las magnitudes modelo, medidos en nanomaggies (unidad de flujo astronómico).
+\end{itemize}
+
+\subsubsection{Parámetros Morfológicos}
+
+Estas variables describen la forma y el tamaño aparente de los objetos:
+
+\begin{itemize}
+    \item \textbf{petroRad\_u, petroRad\_g, petroRad\_r, petroRad\_i, petroRad\_z:} Radio petrosiano en cada filtro, que mide el tamaño característico del objeto en segundos de arco.
+    \item \textbf{expRad\_u, expRad\_g, expRad\_r, expRad\_i, expRad\_z:} Radio de ajuste exponencial, también conocido como radio efectivo o de media luz, que indica el tamaño donde se concentra la mitad de la luz del objeto.
+    \item \textbf{expAB\_u, expAB\_g, expAB\_r, expAB\_i, expAB\_z:} Relación de ejes del ajuste exponencial (b/a), que indica qué tan alargado o circular es el objeto.
+\end{itemize}
+
+\subsubsection{Parámetros de Stokes}
+
+\begin{itemize}
+    \item \textbf{q\_u, q\_g, q\_r, q\_i, q\_z:} Parámetros de Stokes Q en cada filtro, relacionados con la polarización linear de la luz.
+    \item \textbf{u\_u, u\_g, u\_r, u\_i, u\_z:} Parámetros de Stokes U en cada filtro, también relacionados con la polarización.
+\end{itemize}
+
+\textbf{Importancia para la Clasificación:} Las estrellas, al ser objetos puntuales y relativamente cercanos, tienden a tener radios pequeños y magnitudes PSF bien definidas. Las galaxias, siendo objetos extensos y distantes, muestran estructura morfológica compleja, radios mayores y diferencias significativas entre magnitudes PSF y modelo. Estas diferencias fundamentales en las propiedades observacionales son las que permiten a los algoritmos de machine learning distinguir eficazmente entre ambas clases de objetos.
+
+
+
+Antes de proceder con el análisis y modelado, se realizó una evaluación exhaustiva de la calidad y estructura de los datos. Afortunadamente, el dataset del SDSS se encontraba en excelentes condiciones, lo que facilitó significativamente el proceso de análisis.
+
+\subsubsection{Revisión de Calidad de Datos}
+
+Se llevó a cabo una inspección sistemática para identificar posibles problemas en los datos:
+
+\begin{itemize}
+    \item \textbf{Valores Faltantes (NaN):} Se verificó la presencia de valores nulos en todas las variables. El análisis reveló que el dataset no contiene valores faltantes, lo cual es característico de la alta calidad del procesamiento de datos del SDSS.
+    
+    \item \textbf{Valores Nulos:} Se confirmó la ausencia de valores nulos en todas las columnas, indicando un dataset completo y consistente.
+    
+    \item \textbf{Registros Duplicados:} Se realizó una búsqueda de observaciones duplicadas basada en el identificador único (objID). No se encontraron registros duplicados, confirmando la integridad del dataset.
+    
+    \item \textbf{Estructura del Dataset:} El análisis confirmó que el dataset contiene exactamente 51 columnas (variables) como se esperaba, incluyendo todas las características fotométricas, morfológicas y de posición necesarias para la clasificación.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{info_1.png}
+    \caption{Información general del dataset obtenida con df.info(). Se confirma la estructura completa con 4,000,000 entradas, 51 columnas sin valores nulos, y un uso de memoria de 1.5+ GB. Los tipos de datos incluyen enteros (int64), flotantes (float64) y objetos (object) para la variable objetivo.}
+    \label{fig:info_dataset}
+\end{figure}
+
+\subsubsection{Estadísticas Descriptivas}
+
+Se aplicó la función \texttt{df.describe()} para obtener un resumen estadístico completo de todas las variables numéricas del dataset. Este análisis proporcionó información valiosa sobre:
+
+\begin{itemize}
+    \item Medidas de tendencia central (media, mediana)
+    \item Medidas de dispersión (desviación estándar, rango intercuartil)
+    \item Valores mínimos y máximos para cada variable
+    \item Distribución de percentiles (25\%, 50\%, 75\%)
+\end{itemize}
+
+Las estadísticas descriptivas revelaron rangos de valores consistentes con las expectativas astronómicas y confirmaron la ausencia de valores anómalos evidentes que pudieran indicar errores de medición o procesamiento.
+
+Las siguientes figuras muestran el resumen estadístico completo de todas las variables del dataset:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{describe_1.png}
+    \caption{Estadísticas descriptivas - Ejemplo: Variables de identificación, posición y magnitudes PSF. Se observa que todas las variables tienen el conteo completo de 4,000,000 observaciones, confirmando la ausencia de valores faltantes.}
+    \label{fig:describe1}
+\end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=1.0\linewidth]{describe_2.png}
+%     \caption{Estadísticas descriptivas - Parte 2: Radios petrosianos, exponenciales y parámetros de Stokes. Los radios muestran distribuciones típicas con valores pequeños para objetos puntuales (estrellas) y mayores para objetos extendidos (galaxias).}
+%     \label{fig:describe2}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=1.0\linewidth]{describe_3.png}
+%     \caption{Estadísticas descriptivas - Parte 3: Relaciones de ejes, coordenadas y magnitudes modelo. Las coordenadas (ra, dec, b, l) cubren amplios rangos del cielo, indicando una muestra representativa del survey.}
+%     \label{fig:describe3}
+% \end{figure}
+
+\textbf{Observaciones Clave:} El análisis estadístico confirma que el dataset está completo con exactamente 4,000,000 observaciones para cada variable. Los rangos de valores son consistentes con mediciones astronómicas típicas: magnitudes entre aproximadamente 10-30, radios en el rango de segundos de arco esperados, y coordenadas que cubren una amplia porción del cielo observado por el SDSS.
+
+\subsection{Distribución de Datos}
+
+El análisis de distribución de datos es fundamental para entender las características del conjunto de datos y las diferencias entre las clases de objetos astronómicos. Se realizó un estudio exhaustivo que incluye el balance de clases, distribuciones univariadas y análisis de valores atípicos.
+
+\subsubsection{Balance de Clases}
+
+El conjunto de datos presenta un balance perfecto entre las dos clases objetivo:
+
+\begin{itemize}
+    \item \textbf{Estrellas (star):} 2,000,004 observaciones (50.0001\%)
+    \item \textbf{Galaxias (galaxy):} 1,999,996 observaciones (49.9999\%)
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{count.png}
+    \caption{Distribución de las clases en el dataset. Se observa que las variables tienen el conteo completo de 4,000,000 observaciones.}
+    \label{fig:count}
+\end{figure}
+
+
+Este balance perfecto es ideal para algoritmos de clasificación, ya que elimina el sesgo hacia una clase particular y permite que los modelos aprendan patrones de ambas clases de manera equitativa. La distribución balanceada es especialmente valiosa porque:
+
+\begin{itemize}
+    \item Evita la necesidad de técnicas de balanceo adicionales (oversampling, undersampling)
+    \item Permite utilizar accuracy como métrica principal sin riesgo de interpretaciones erróneas
+    \item Garantiza que los modelos no estén sesgados hacia la clase mayoritaria
+    \item Facilita la interpretación de métricas como precision, recall y F1-score
+\end{itemize}
+
+\subsubsection{Análisis de Distribuciones por Variable}
+
+Se realizó un análisis detallado de las distribuciones de las variables más relevantes para la clasificación, enfocándose en aquellas que muestran diferencias significativas entre estrellas y galaxias.
+
+\textbf{Variables con Distribuciones Normales:}
+Algunas variables del dataset presentan distribuciones aproximadamente normales o bien balanceadas, como se muestra en la siguiente figura:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{variables_normales.png}
+    \caption{Histogramas de variables con distribuciones relativamente normales. Se muestran ejemplos representativos de las 52 columnas del dataset. Estas variables requieren preprocesamiento mínimo y son candidatas ideales para el escalado estándar.}
+    \label{fig:variables_normales}
+\end{figure}
+
+\textbf{Variables con Distribuciones Sesgadas:}
+Una gran proporción de las variables astronómicas presenta distribuciones altamente sesgadas, especialmente aquellas relacionadas con flujos y parámetros de Stokes:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{variables_sesgadas.png}
+    \caption{Histogramas de variables con distribuciones altamente sesgadas. Se observa la concentración de valores cerca de cero y colas extremas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos que ilustran los patrones identificados en el análisis completo.}
+    \label{fig:variables_sesgadas}
+\end{figure}
+
+Las variables sesgadas incluyen particularmente:
+\begin{itemize}
+    \item \textbf{Parámetros de Stokes (\texttt{q\_*}, \texttt{u\_*}):} Con valores concentrados cerca de cero y outliers extremos
+    \item \textbf{Variables de movimiento (\texttt{rowv}, \texttt{colv}):} Casi exclusivamente ceros, indicando objetos estacionarios
+    \item \textbf{Algunos flujos modelo:} Con distribuciones log-normales marcadas
+\end{itemize}
+
+\textbf{Magnitudes PSF (Point Spread Function):}
+Las magnitudes PSF (\texttt{psfMag\_u}, \texttt{psfMag\_g}, \texttt{psfMag\_r}, \texttt{psfMag\_i}, \texttt{psfMag\_z}) muestran distribuciones que reflejan las características físicas fundamentales de cada tipo de objeto:
+
+\begin{itemize}
+    \item \textbf{Estrellas:} Presentan distribuciones más concentradas en rangos específicos de magnitud, reflejando su naturaleza como fuentes puntuales con luminosidades bien definidas.
+    \item \textbf{Galaxias:} Muestran distribuciones más amplias, especialmente en los filtros rojos (r, i, z), debido a la diversidad de tipos morfológicos y distancias.
+\end{itemize}
+
+\textbf{Radios Petrosianos (\texttt{petroRad\_*}):}
+Estos parámetros morfológicos son particularmente discriminativos:
+
+\begin{itemize}
+    \item \textbf{Estrellas:} Concentración en valores pequeños (típicamente $< 2$ segundos de arco), consistente con su naturaleza puntual.
+    \item \textbf{Galaxias:} Distribución extendida hacia valores mayores, reflejando su estructura espacial extendida.
+\end{itemize}
+
+\textbf{Radios Exponenciales (\texttt{expRad\_*}):}
+Similar a los radios petrosianos, pero con énfasis en el ajuste de perfil de brillo:
+
+\begin{itemize}
+    \item La diferencia entre estrellas y galaxias is aún más pronunciada
+    \item Los valores para galaxias pueden extenderse a radios significativamente mayores
+\end{itemize}
+
+\textbf{Flujos Modelo (\texttt{modelFlux\_*}):}
+Estas variables muestran distribuciones log-normales típicas de datos astrofísicos:
+
+\begin{itemize}
+    \item Presencia de valores extremos (tanto muy brillantes como muy débiles)
+    \item Asimetría positiva marcada
+    \item Diferencias sutiles pero consistentes entre estrellas y galaxias en cada filtro
+\end{itemize}
+
+\subsubsection{Identificación de Valores Atípicos}
+
+El análisis de boxplots reveló la presencia de valores atípicos en varias categorías de variables. Las siguientes figuras muestran ejemplos representativos del comportamiento de outliers en diferentes tipos de variables:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{boxplot_1.png}
+    \caption{Boxplots de magnitudes fotométricas mostrando la presencia de valores atípicos. Estos outliers representan objetos astronómicos reales (muy brillantes o muy débiles) y contienen información valiosa para la clasificación.}
+    \label{fig:boxplot1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{boxplot_2.png}
+    \caption{Boxplots de parámetros de Stokes y variables de movimiento. Se observa la concentración extrema de valores cerca de cero y la presencia de outliers exagerados, especialmente en los parámetros q\_* y u\_*.}
+    \label{fig:boxplot2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{boxplot_3.png}
+    \caption{Boxplots de parámetros morfológicos (relaciones de ejes y algunos histogramas adicionales). Las variables expAB\_* muestran distribuciones más controladas, mientras que otras variables presentan comportamientos diversos. Debido a las 52 columnas del dataset, se presentan ejemplos representativos.}
+    \label{fig:boxplot3}
+\end{figure}
+
+
+\textbf{Variables Fotométricas (\texttt{psfMag\_*}, \texttt{u}, \texttt{g}, \texttt{r}, \texttt{i}, \texttt{z}):}
+\begin{itemize}
+    \item Presentan outliers que \textbf{NO son errores}, sino objetos astronómicos reales muy brillantes o muy débiles
+    \item Estos valores extremos contienen información valiosa para la clasificación
+    \item Justifican el uso de \texttt{RobustScaler} en lugar de \texttt{StandardScaler} para reducir el impacto de valores extremos sin eliminar la información útil
+\end{itemize}
+
+
+\subsection{Correlación de Datos}
+
+El análisis de correlación es fundamental para comprender las relaciones entre variables y identificar aquellas que son más discriminativas para la clasificación entre estrellas y galaxias. Se realizaron dos tipos principales de análisis de correlación que proporcionan información complementaria sobre la estructura de los datos.
+
+\subsubsection{Correlación con la Variable Objetivo}
+
+Se calculó la correlación de Pearson entre todas las variables numéricas y la variable objetivo (\texttt{type\_numeric}), donde las estrellas se codificaron como 0 y 
+las galaxias como 1. Este análisis permite identificar qué variables tienen el mayor poder discriminativo para distinguir entre ambas clases de objetos astronómicos.
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.4\linewidth]{correlacion_1.png}
+    \caption{Correlación de todas las variables con la variable objetivo (type\_numeric). Las variables con correlaciones más altas (en valor absoluto) son las más discriminativas para la clasificación.}
+    \label{fig:correlacion_target}
+\end{figure}
+
+\textbf{Principales hallazgos del análisis de correlación con el objetivo:}
+
+\begin{itemize}
+    \item \textbf{Variables más correlacionadas positivamente (galaxias):} Los parámetros morfológicos como radios petrosianos (\texttt{petroRad\_*}) y radios exponenciales (\texttt{expRad\_*}) muestran las correlaciones más altas.
+    
+    \item \textbf{Variables más correlacionadas negativamente (estrellas):} Ciertas magnitudes y diferencias de color muestran correlaciones negativas.
+    
+    \item \textbf{Variables con baja correlación:} Los parámetros de Stokes y algunas coordenadas muestran correlaciones muy bajas, sugiriendo menor poder discriminativo individual.
+\end{itemize}
+
+\subsubsection{Matriz de Correlación Completa}
+
+Se generó una matriz de correlación completa que muestra las relaciones entre todas las variables del dataset. Esta matriz es esencial para identificar multicolinealidad y entender la estructura subyacente de los datos astronómicos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{correlacion_2.png}
+    \caption{Matriz de correlación entre todas las variables del dataset. Los colores más intensos indican correlaciones más fuertes (positivas en azul, negativas en amarillo). Se observan bloques de alta correlación entre variables del mismo tipo (e.g., magnitudes en diferentes filtros, radios en diferentes bandas).}
+    \label{fig:matriz_correlacion}
+\end{figure}
+
+\textbf{Patrones identificados en la matriz de correlación:}
+
+\begin{itemize}
+    \item \textbf{Alta correlación entre filtros:} Las magnitudes en diferentes filtros fotométricos (u, g, r, i, z) muestran correlaciones elevadas, lo cual es esperado ya que representan el brillo del mismo objeto en diferentes longitudes de onda.
+    
+    \item \textbf{Correlación entre parámetros morfológicos:} Los radios petrosianos y exponenciales en diferentes filtros están altamente correlacionados, reflejando que la morfología de un objeto es generalmente consistente a través del espectro.
+    
+    \item \textbf{Correlaciones débiles en parámetros de Stokes:} Los parámetros q\_* y u\_* muestran correlaciones generalmente bajas con otras variables, sugiriendo que contienen información única pero con menor poder discriminativo.
+    
+    \item \textbf{Bloques de correlación:} Se observan bloques claramente definidos correspondientes a familias de variables relacionadas (fotométricas, morfológicas, astrométricas).
+\end{itemize}
+
+\subsubsection{Exportación para Análisis Detallado}
+
+Debido a la complejidad y el gran número de variables (52 columnas), la matriz de correlación completa ha sido exportada a un archivo Excel (\texttt{matriz\_correlacion\_heatmap.xlsx}) para facilitar un análisis más detallado y navegable.
+
+
+\newpage
+
+\section{Preparación de Datos}
+% Agregar contenido aquí
+
+\subsection{Limpieza}
+
+La fase de limpieza de datos fue sorprendentemente directa debido a la alta calidad del conjunto de datos del SDSS. Se realizaron verificaciones sistemáticas de la integridad de los datos antes de proceder con la selección y transformación de variables.
+
+\subsubsection{Verificación de Valores Faltantes y Duplicados}
+
+Se ejecutaron las siguientes operaciones para evaluar la calidad de los datos:
+
+\texttt{df.isnull().sum()} - Verificación de valores nulos (NaN)
+\texttt{df.isna().sum()} - Verificación adicional de valores faltantes
+\texttt{df.duplicated().sum()} - Detección de registros duplicados
+
+\textbf{Resultado:} Los análisis confirmaron que el dataset no contiene valores nulos, faltantes o registros duplicados, lo que refleja la alta calidad del procesamiento de datos del SDSS.
+
+\subsubsection{Eliminación de Variables No Informativas}
+
+Basándose en el análisis exploratorio de datos y el conocimiento del dominio astronómico, se procedió a eliminar variables que no contribuyen significativamente a la tarea de clasificación:
+
+\textbf{Identificadores y Metadatos del Survey:}
+Se eliminaron las siguientes variables por ser únicamente identificadores técnicos sin valor predictivo:
+\begin{itemize}
+    \item \texttt{objID}: Identificador único del objeto en el SDSS
+    \item \texttt{run}: Número de secuencia de observación
+    \item \texttt{camcol}: Columna de la cámara utilizada
+    \item \texttt{field}: Número del campo observado
+\end{itemize}
+
+\textbf{Variables de Movimiento Propio:}
+Se eliminaron las variables de velocidad por tener valores casi exclusivamente iguales a cero:
+\begin{itemize}
+    \item \texttt{rowv}: Componente de velocidad en fila (grados/día)
+    \item \texttt{colv}: Componente de velocidad en columna (grados/día)
+\end{itemize}
+
+Estas variables representan movimiento propio de los objetos, pero en el contexto de este dataset, la gran mayoría de los objetos no muestran movimiento detectable en la escala temporal de las observaciones.
+
+\textbf{Parámetros de Stokes Sesgados:}
+Se eliminaron todos los parámetros de Stokes debido a su distribución extremadamente sesgada hacia cero:
+\begin{itemize}
+    \item \texttt{q\_u, q\_g, q\_r, q\_i, q\_z}: Parámetros de Stokes Q en todos los filtros
+    \item \texttt{u\_u, u\_g, u\_r, u\_i, u\_z}: Parámetros de Stokes U en todos los filtros
+\end{itemize}
+
+Estos parámetros relacionados con la polarización linear de la luz mostraron valores concentrados cerca de cero con outliers extremos que no aportaban información discriminativa útil para la clasificación entre estrellas y galaxias.
+
+\textbf{Implementación de la Limpieza:}
+
+\begin{verbatim}
+# Eliminar objID, run, camcol, field ya que son identificadores
+# quitamos q_u, q_*, u_* ya que casi todos los valores están sesgados a 0
+df.drop(columns=['objID', 'rowv', 'colv', 'run', 'camcol', 'field', 
+                 'q_u', 'q_g', 'q_r', 'q_i', 'q_z', 
+                 'u_u', 'u_g', 'u_r', 'u_i', 'u_z'], inplace=True)
+\end{verbatim}
+
+\subsubsection{Codificación de la Variable Objetivo}
+
+Para facilitar el uso con algoritmos de machine learning, se creó una versión numérica de la variable objetivo:
+
+\begin{verbatim}
+df['type_numeric'] = df['type'].map({'star': 0, 'galaxy': 1})
+\end{verbatim}
+
+Esta codificación asigna:
+\begin{itemize}
+    \item \textbf{0}: Estrellas
+    \item \textbf{1}: Galaxias
+\end{itemize}
+
+\textbf{Resultado de la Limpieza:}
+Después del proceso de limpieza, el dataset se redujo de 51 columnas originales a 36 columnas útiles (incluyendo la variable objetivo numérica), manteniendo todas las variables con poder discriminativo real para la clasificación astronómica mientras se eliminaron aquellas que introducirían ruido o sesgo en los modelos.
+
+\subsection{Selección de Variables}
+
+La selección de variables es un paso crítico en el desarrollo de modelos de machine learning eficaces. Basándose en el análisis exploratorio de datos, las correlaciones con la variable objetivo y el conocimiento del dominio astronómico, se identificaron las variables más discriminativas para la clasificación entre estrellas y galaxias.
+
+\subsubsection{Criterios de Selección}
+
+La selección de variables se basó en múltiples criterios complementarios derivados del análisis exhaustivo realizado en las secciones anteriores:
+
+\textbf{1. Análisis de Correlación con el Objetivo:}
+Se priorizaron las variables que mostraron las correlaciones más altas (en valor absoluto) con la variable objetivo \texttt{type\_numeric}, ya que estas variables tienen el mayor poder discriminativo individual.
+
+\textbf{2. Conocimiento del Dominio Astronómico:}
+Se aplicó el conocimiento físico sobre las diferencias fundamentales entre estrellas y galaxias:
+\begin{itemize}
+    \item \textbf{Morfología:} Las galaxias son objetos extendidos mientras que las estrellas aparecen como fuentes puntuales
+    \item \textbf{Fotometría:} Las diferencias en los perfiles de brillo entre objetos puntuales y extendidos
+    \item \textbf{Multiespectral:} El comportamiento a través de diferentes filtros fotométricos
+\end{itemize}
+
+\textbf{3. Distribuciones Discriminativas:}
+Se seleccionaron variables que mostraron distribuciones claramente diferenciadas entre las dos clases durante el análisis exploratorio de datos.
+
+\textbf{4. Ausencia de Multicolinealidad Extrema:}
+Se evitaron combinaciones de variables con correlaciones excesivamente altas para prevenir redundancia y problemas de multicolinealidad.
+
+\subsubsection{Variables Seleccionadas}
+
+Después del análisis integral, se seleccionaron 13 variables que proporcionan la máxima información discriminativa para la clasificación:
+
+\begin{verbatim}
+features = [
+    'expRad_r', 'expRad_i', 'expRad_g',
+    'petroRad_r', 'expRad_z', 'petroRad_i',
+    'petroRad_g', 'i', 'petroRad_z', 'expRad_u', 'z', 'r', 'g'
+]
+\end{verbatim}
+
+% \textbf{Categorización de Variables Seleccionadas:}
+
+% \textbf{1. Parámetros Morfológicos - Radios Exponenciales:}
+% \begin{itemize}
+%     \item \texttt{expRad\_u, expRad\_g, expRad\_r, expRad\_i, expRad\_z}: Radios exponenciales en los cinco filtros del SDSS
+%     \item \textbf{Importancia:} Estos parámetros miden el tamaño característico donde se concentra la mitad de la luz del objeto
+%     \item \textbf{Discriminación:} Las estrellas presentan radios exponenciales pequeños y consistentes, mientras que las galaxias muestran valores mayores y más variables
+% \end{itemize}
+
+% \textbf{2. Parámetros Morfológicos - Radios Petrosianos:}
+% \begin{itemize}
+%     \item \texttt{petroRad\_g, petroRad\_r, petroRad\_i, petroRad\_z}: Radios petrosianos en cuatro filtros principales
+%     \item \textbf{Importancia:} Miden el tamaño total del objeto astronómico independientemente de la distancia
+%     \item \textbf{Discriminación:} Proporcionan la separación más clara entre objetos puntuales (estrellas) y extendidos (galaxias)
+% \end{itemize}
+
+% \textbf{3. Magnitudes Fotométricas:}
+% \begin{itemize}
+%     \item \texttt{g, r, i, z}: Magnitudes modelo en cuatro filtros fotométricos principales
+%     \item \textbf{Importancia:} Representan el brillo aparente del objeto en diferentes longitudes de onda
+%     \item \textbf{Discriminación:} Las diferencias en los perfiles de brillo entre filtros ayudan a distinguir la naturaleza extendida de las galaxias versus la naturaleza puntual de las estrellas
+% \end{itemize}
+
+% \subsubsection{Justificación de la Selección}
+
+% \textbf{Exclusión del Filtro Ultravioleta (u) en Magnitudes:}
+% Se incluyó únicamente \texttt{expRad\_u} pero no la magnitud \texttt{u} debido a:
+% \begin{itemize}
+%     \item Mayor ruido en las observaciones ultravioleta
+%     \item Menor cobertura y profundidad en el filtro u del SDSS
+%     \item Redundancia parcial con otros filtros para la clasificación binaria
+% \end{itemize}
+
+% \textbf{Balance entre Información y Complejidad:}
+% La selección de 13 variables representa un equilibrio óptimo:
+% \begin{itemize}
+%     \item Suficiente información para capturar las diferencias físicas fundamentales
+%     \item Número manejable para evitar la maldición de la dimensionalidad
+%     \item Diversidad de tipos de información (morfológica y fotométrica)
+%     \item Cobertura espectral adecuada a través de múltiples filtros
+% \end{itemize}
+
+% \textbf{Validación de la Selección:}
+% La efectividad de esta selección se basa en:
+% \begin{itemize}
+%     \item \textbf{Separabilidad física:} Las variables seleccionadas capturan las diferencias fundamentales entre objetos puntuales y extendidos
+%     \item \textbf{Correlación con el objetivo:} Todas las variables muestran correlaciones significativas con la variable objetivo
+%     \item \textbf{Complementariedad:} Las variables morfológicas y fotométricas proporcionan información complementaria
+%     \item \textbf{Robustez espectral:} La inclusión de múltiples filtros asegura robustez contra variaciones en las condiciones de observación
+% \end{itemize}
+
+Esta selección optimizada de variables forma la base para el entrenamiento de los modelos de machine learning, asegurando que se capture la información más relevante mientras se minimiza el ruido y la redundancia en los datos.
+
+\subsection{Preprocesado (Logaritmo, RobustScaler)}
+
+El preprocesado de datos es fundamental para optimizar el rendimiento de los algoritmos de machine learning, especialmente cuando se trabaja con datos astronómicos que presentan distribuciones altamente sesgadas y valores atípicos significativos. Se desarrolló un pipeline de preprocesado sofisticado que aplica diferentes transformaciones según las características específicas de cada variable.
+
+\subsubsection{Arquitectura del Pipeline de Preprocesado}
+
+Se implementó un \texttt{ColumnTransformer} que permite aplicar diferentes transformaciones a distintos grupos de columnas de manera simultánea y eficiente:
+
+\begin{verbatim}
+
+# Pipeline para columnas con transformación logarítmica
+log_transformer = Pipeline([
+    ("log", FunctionTransformer(np.log1p, validate=False)),
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", RobustScaler())
+])
+
+# Pipeline para columnas estándar
+standard_transformer = Pipeline([
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scale", RobustScaler())
+])
+
+# ColumnTransformer final
+preprocessing_pipeline = ColumnTransformer([
+    ("log_cols", log_transformer, selected_columns),
+    ("other_cols", standard_transformer, remaining_columns)
+])
+\end{verbatim}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{preprocesado_pipeline.png}
+    \caption{Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar.}
+    \label{fig:pipeline_preprocesado}
+\end{figure}
+
+\subsubsection{Transformación Logarítmica}
+
+\textbf{Justificación para la Transformación Logarítmica:}
+
+Las variables astronómicas, particularmente aquellas relacionadas con flujos y ciertas magnitudes, presentan distribuciones log-normales características. La transformación logarítmica se aplicó a variables específicas por las siguientes razones:
+
+\begin{itemize}
+    \item \textbf{Corrección de asimetría:} Muchas variables astronómicas muestran distribuciones altamente sesgadas hacia la derecha
+    \item \textbf{Estabilización de varianza:} La transformación logarítmica reduce la heteroscedasticidad en los datos
+    \item \textbf{Normalización de distribuciones:} Aproxima las distribuciones a una forma más normal, beneficiando algoritmos como la Regresión Logística
+    \item \textbf{Mejor separabilidad:} Mejora la capacidad de los algoritmos para encontrar patrones discriminativos
+\end{itemize}
+
+\textbf{Función de Transformación:}
+Se utilizó \texttt{np.log1p()} (logaritmo natural de 1 + x) en lugar de \texttt{np.log()} para:
+\begin{itemize}
+    \item Manejar valores cercanos a cero sin generar errores matemáticos
+    \item Preservar la estabilidad numérica de la transformación
+    \item Mantener la continuidad en el origen
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{logaritmica_ejemplo.png}
+    \caption{Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning.}
+    \label{fig:transformacion_logaritmica}
+\end{figure}
+
+La figura \ref{fig:transformacion_logaritmica} ilustra claramente cómo la transformación logarítmica convierte distribuciones extremadamente concentradas cerca de cero en distribuciones más balanceadas y simétricas, facilitando el aprendizaje de patrones por parte de los algoritmos.
+
+\subsubsection{Selección de RobustScaler}
+
+\textbf{Justificación para RobustScaler vs StandardScaler:}
+
+Se eligió \texttt{RobustScaler} \cite{sklearn_robustscaler} sobre \texttt{StandardScaler} por razones específicas relacionadas con la naturaleza de los datos astronómicos:
+
+\textbf{Ventajas del RobustScaler:}
+\begin{itemize}
+    \item \textbf{Resistencia a outliers:} Utiliza la mediana y los cuartiles en lugar de la media y desviación estándar
+    \item \textbf{Preservación de información astronómica:} Los valores extremos en astronomía suelen ser objetos reales (muy brillantes o muy débiles) que contienen información valiosa
+    \item \textbf{Estabilidad estadística:} Menos sensible a valores atípicos que podrían sesgar la normalización
+    \item \textbf{Mejor generalización:} Más robusto ante nuevas observaciones con valores extremos
+\end{itemize}
+
+\textbf{Fórmula del RobustScaler:}
+\begin{equation}
+X_{scaled} = \frac{X - \text{median}(X)}{\text{IQR}(X)}
+\end{equation}
+
+Donde IQR es el rango intercuartil (Q3 - Q1).
+
+\textbf{Comparación con StandardScaler:}
+\begin{itemize}
+    \item \textbf{StandardScaler:} $X_{scaled} = \frac{X - \mu}{\sigma}$ (sensible a outliers)
+    \item \textbf{RobustScaler:} Basado en estadísticas robustas (mediana y cuartiles)
+\end{itemize}
+
+\subsubsection{Estrategia de Imputación}
+
+\textbf{SimpleImputer con Estrategia de Mediana:}
+
+Aunque el dataset del SDSS no presenta valores faltantes, se incluyó \texttt{SimpleImputer} \cite{sklearn_simpleimputer} como medida preventiva:
+
+\begin{itemize}
+    \item \textbf{Robustez del pipeline:} Garantiza funcionamiento ante posibles valores NaN en datos futuros
+    \item \textbf{Estrategia de mediana:} Consistente con el enfoque robusto general del pipeline
+    \item \textbf{Estabilidad numérica:} Previene errores en caso de valores problemáticos introducidos durante las transformaciones
+\end{itemize}
+
+\subsubsection{Optimización de Rendimiento}
+
+\textbf{Muestreo Estratificado para Desarrollo:}
+Para optimizar el tiempo de procesamiento durante el desarrollo del pipeline, se utilizó un muestreo estratificado:
+
+\begin{verbatim}
+df_sampled = df.groupby("type_numeric").sample(n=50_000, random_state=42)
+X = df_sampled[features]
+y = df_sampled['type_numeric']
+\end{verbatim}
+
+Este enfoque mantiene la proporción balanceada de clases (50,000 estrellas y 50,000 galaxias) mientras reduce significativamente el tiempo de procesamiento para pruebas y desarrollo del pipeline.
+
+\newpage
+
+\section{Modelos de Machine Learning}
+
+En esta sección se implementan y evalúan cuatro algoritmos de clasificación binaria para distinguir entre estrellas y galaxias. Cada modelo se integra con el pipeline de preprocesado desarrollado anteriormente para garantizar un procesamiento consistente y robusto de los datos.
+
+\textbf{Métricas de Evaluación:}
+Para evaluar el rendimiento de cada modelo se utilizarán las siguientes métricas:
+\begin{itemize}
+    \item \textbf{Accuracy:} Proporción de predicciones correctas sobre el total
+    \item \textbf{F1-Score Macro:} Media armónica entre precisión y recall, promediada para ambas clases
+    \item \textbf{Recall:} Capacidad del modelo para identificar correctamente cada clase
+\end{itemize}
+
+\textbf{Metodología de Validación:}
+Se compararán los errores de entrenamiento con los errores de validación cruzada utilizando:
+\begin{itemize}
+    \item \textbf{StratifiedKFold} con n=5 folds para validación cruzada
+    \item \textbf{train\_test\_split} con proporción 0.2 para conjunto de prueba
+    \item Comparación entre error de entrenamiento y error de validación cruzada para detectar sobreajuste
+\end{itemize}
+
+\subsection{Random Forest}
+
+Random Forest es un algoritmo de ensemble que combina múltiples árboles de decisión para crear un clasificador robusto y preciso. Es especialmente efectivo para datos astronómicos debido a su capacidad para manejar características no lineales y su resistencia al sobreajuste.
+
+\textbf{Características Principales:}
+\begin{itemize}
+    \item Combina múltiples árboles de decisión mediante votación mayoritaria
+    \item Utiliza bootstrap sampling y selección aleatoria de características
+    \item Proporciona medidas de importancia de variables
+    \item Robusto ante outliers y datos faltantes
+\end{itemize}
+
+\textbf{Pipeline Implementado:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pipeline_random_forest.png}
+    \caption{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble.}
+    \label{fig:pipeline_rf}
+\end{figure}
+
+\textbf{Parámetros Principales:}
+\begin{itemize}
+    \item \texttt{n\_estimators}: Número de árboles en el bosque (default: 100)
+    \item \texttt{max\_depth}: Profundidad máxima de cada árbol
+    \item \texttt{min\_samples\_split}: Mínimo de muestras para dividir un nodo
+    \item \texttt{min\_samples\_leaf}: Mínimo de muestras en cada hoja
+    \item \texttt{random\_state}: Semilla para reproducibilidad
+\end{itemize}
+
+\textbf{Referencia:} \textit{sklearn.ensemble.RandomForestClassifier} \cite{sklearn_rf}
+
+\subsection{Logistic Regression}
+
+La Regresión Logística es un algoritmo lineal que utiliza la función logística para modelar la probabilidad de pertenencia a cada clase. Es especialmente adecuado para problemas de clasificación binaria y proporciona interpretabilidad en los coeficientes.
+
+\textbf{Características Principales:}
+\begin{itemize}
+    \item Modelo lineal con función de activación logística (sigmoide)
+    \item Proporciona probabilidades de clasificación interpretables
+    \item Eficiente computacionalmente y rápido en entrenamiento
+    \item Asume relación lineal entre características y log-odds
+\end{itemize}
+
+\textbf{Pipeline Implementado:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pipeline_logistic_regression.png}
+    \caption{Pipeline completo para Regresión Logística, donde el preprocesado es crucial para la normalización de características.}
+    \label{fig:pipeline_lr}
+\end{figure}
+
+\textbf{Parámetros Principales:}
+\begin{itemize}
+    \item \texttt{C}: Parámetro de regularización (inverso de lambda)
+    \item \texttt{penalty}: Tipo de regularización ('l1', 'l2', 'elasticnet')
+    \item \texttt{solver}: Algoritmo de optimización ('liblinear', 'lbfgs', 'saga')
+    \item \texttt{max\_iter}: Número máximo de iteraciones para convergencia
+    \item \texttt{random\_state}: Semilla para reproducibilidad
+\end{itemize}
+
+\textbf{Referencia:} \textit{sklearn.linear\_model.LogisticRegression} \cite{sklearn_lr}
+
+\subsection{SVM}
+
+Support Vector Machine (SVM) es un algoritmo de máximo margen que busca el hiperplano óptimo para separar las clases. Es especialmente efectivo en espacios de alta dimensionalidad y puede manejar relaciones no lineales mediante kernels.
+
+\textbf{Características Principales:}
+\begin{itemize}
+    \item Encuentra el hiperplano de separación con máximo margen
+    \item Utiliza vectores de soporte para definir la frontera de decisión
+    \item Eficaz en espacios de alta dimensionalidad
+    \item Puede usar kernels para relaciones no lineales
+\end{itemize}
+
+\textbf{Pipeline Implementado:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pipeline_svm.png}
+    \caption{Pipeline completo para SVM, donde la normalización de datos es fundamental para el correcto funcionamiento del algoritmo.}
+    \label{fig:pipeline_svm}
+\end{figure}
+
+\textbf{Parámetros Principales:}
+\begin{itemize}
+    \item \texttt{C}: Parámetro de regularización que controla el trade-off entre margen y errores
+    \item \texttt{kernel}: Tipo de kernel ('linear', 'poly', 'rbf', 'sigmoid')
+    \item \texttt{gamma}: Parámetro del kernel RBF ('scale', 'auto', o valor numérico)
+    \item \texttt{degree}: Grado del kernel polinomial
+    \item \texttt{random\_state}: Semilla para reproducibilidad
+\end{itemize}
+
+\textbf{Referencia:} \textit{sklearn.svm.SVC} \cite{sklearn_svm}
+
+\subsection{KNN}
+
+K-Nearest Neighbors (KNN) es un algoritmo no paramétrico basado en instancias que clasifica nuevos puntos según la clase mayoritaria de sus k vecinos más cercanos. Es simple conceptualmente pero efectivo para muchos problemas de clasificación.
+
+\textbf{Características Principales:}
+\begin{itemize}
+    \item Algoritmo basado en instancias (lazy learning)
+    \item No construye un modelo explícito durante el entrenamiento
+    \item La clasificación se basa en la similitud entre instancias
+    \item Sensible a la escala de las características
+\end{itemize}
+
+\textbf{Pipeline Implementado:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{pipeline_knn.png}
+    \caption{Pipeline completo para KNN, donde la normalización es crítica debido a la sensibilidad del algoritmo a la escala de las características.}
+    \label{fig:pipeline_knn}
+\end{figure}
+
+\textbf{Parámetros Principales:}
+\begin{itemize}
+    \item \texttt{n\_neighbors}: Número de vecinos a considerar (k)
+    \item \texttt{weights}: Esquema de ponderación ('uniform', 'distance')
+    \item \texttt{metric}: Métrica de distancia ('euclidean', 'manhattan', 'minkowski')
+    \item \texttt{p}: Parámetro para la métrica de Minkowski
+    \item \texttt{algorithm}: Algoritmo para cálculo de vecinos ('auto', 'ball\_tree', 'kd\_tree', 'brute')
+\end{itemize}
+
+\textbf{Referencia:} \textit{sklearn.neighbors.KNeighborsClassifier} \cite{sklearn_knn}
+
+\newpage
+
+\section{Resultados}
+% Agregar contenido aquí
+
+\subsection{Comparación de Modelos}
+
+Después de entrenar y evaluar los cuatro algoritmos de clasificación con el pipeline de preprocesado desarrollado, se realizó un análisis comparativo exhaustivo de su rendimiento. La evaluación se basó en las métricas definidas previamente y la metodología de validación cruzada establecida.
+
+\subsubsection{Resultados Comparativos Generales}
+
+La siguiente tabla presenta un resumen completo del rendimiento de todos los modelos evaluados:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Modelo} &  \textbf{Accuracy (CV)} & \textbf{F1 Macro (CV)} & \textbf{Recall (CV)} \\
+\hline
+Random Forest  & 0.9571 & 0.9571 & 0.9571 \\
+\hline
+Logistic Regression  & 0.9430 & 0.9430 & 0.9430 \\
+\hline
+SVM  & 0.9545 & 0.9545 & 0.9545 \\
+\hline
+KNN  & 0.9425 & 0.9425 & 0.9425 \\
+\hline
+\end{tabular}
+\caption{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales.}
+\label{tab:comparacion_completa}
+\end{table}
+
+\subsubsection{Análisis de Sobreajuste}
+
+Para detectar posibles problemas de sobreajuste, se realizó una comparación específica entre los errores de entrenamiento y validación cruzada:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Modelo} & \textbf{Error Training} & \textbf{Error Cross Validation} \\
+\hline
+Random Forest & 0.000 & 0.0429 \\
+\hline
+Logistic Regression & 0.0572 & 0.0570  \\
+\hline
+SVM & 0.0425 & 0.0455 \\
+\hline
+KNN & 0.0415 & 0.0575  \\
+\hline
+\end{tabular}
+\caption{Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste.}
+\label{tab:analisis_overfitting}
+\end{table}
+
+\subsubsection{Interpretación de Resultados}
+
+\textbf{Análisis por Modelo:}
+
+\begin{itemize}
+    \item \textbf{Random Forest:} Aunque muestra el mejor accuracy en validación cruzada (95.71\%), presenta \textbf{overfitting severo} con error de entrenamiento de 0.000 vs 4.29\% en validación cruzada, indicando memorización del conjunto de entrenamiento.
+    
+    \item \textbf{SVM:} Presenta un error de entrenamiento de 4.25\% y 4.55\% en validación cruzada, mostrando signos de ligero sobreajuste con una diferencia de 0.30\%.
+    
+    \item \textbf{KNN:} Tiene un error de entrenamiento de 4.15\% pero 5.75\% en validación cruzada, presentando sobreajuste con una diferencia de 1.60\%.
+    
+    \item \textbf{Logistic Regression:} Muestra el comportamiento más estable con errores de 5.72\% en entrenamiento y 5.70\% en validación cruzada, indicando excelente capacidad de generalización sin overfitting.
+\end{itemize}
+
+\subsubsection{Selección del Modelo Final}
+
+\textbf{Decisión: Logistic Regression}
+
+A pesar de que Random Forest muestra el mejor accuracy en validación cruzada (95.71\%), se seleccionó \textbf{Logistic Regression} como modelo final basándose en los siguientes criterios:
+
+\textbf{1. Severo Overfitting de Random Forest:}
+\begin{itemize}
+    \item Random Forest presenta error de entrenamiento de 0.000\%, indicando memorización completa del conjunto de entrenamiento
+    \item Esta capacidad de memorización sugiere que el modelo no generalizará bien a datos nuevos
+    \item El rendimiento en validación cruzada puede estar sobreestimado debido al overfitting
+\end{itemize}
+
+\textbf{2. Velocidad de Entrenamiento:}
+\begin{itemize}
+    \item Logistic Regression es significativamente más rápido de entrenar que Random Forest
+    \item Importante consideración para datasets de gran escala
+    \item Permite iteraciones más rápidas durante la optimización de hiperparámetros
+\end{itemize}
+
+Esta decisión prioriza un equilibrio entre rendimiento, eficiencia y capacidad de generalización, considerando las limitaciones prácticas de implementación en contextos astronómicos reales.
+
+\subsection{RandomizedSearch}
+
+Para optimizar los hiperparámetros de Logistic Regression, se implementó una búsqueda aleatoria utilizando \texttt{RandomizedSearchCV} con el siguiente espacio de búsqueda:
+
+\begin{verbatim}
+param_distributions = {
+    'classifier__penalty': ['l1', 'l2', 'elasticnet'],
+    'classifier__C': uniform(0.001, 10),
+    'classifier__l1_ratio': uniform(0, 1)
+}
+\end{verbatim}
+
+\textbf{Configuración de la Búsqueda:}
+\begin{itemize}
+    \item \textbf{Iteraciones:} 20 combinaciones aleatorias de hiperparámetros
+    \item \textbf{Métrica:} Accuracy como criterio de optimización
+\end{itemize}
+
+\textbf{Mejores Hiperparámetros Encontrados:}
+\begin{itemize}
+    \item \texttt{penalty}: 'l1' (regularización Lasso)
+    \item \texttt{C}: 0.4655 (parámetro de regularización)
+    \item \texttt{l1\_ratio}: 0.6075 (ratio de regularización L1)
+\end{itemize}
+
+La búsqueda aleatoria permitió explorar eficientemente el espacio de hiperparámetros, priorizando la regularización L1 que favorece la selección automática de características más relevantes.
+
+\subsection{Modelo Final}
+
+Con base en los resultados del RandomizedSearchCV, se configuró el modelo final de Logistic Regression con los hiperparámetros optimizados, asi mismo se utilizaron todos los datos disponibles para el entrenamiento:
+
+\begin{verbatim}
+mejor_modelo = Pipeline([
+    ("preprocessing", preprocessing_pipeline),
+    ("classifier", LogisticRegression(
+        solver="saga",
+        max_iter=1000,
+        random_state=42,
+        penalty="l1",
+        C=0.46550412719997725,
+        l1_ratio=0.6075448519014384
+    ))
+])
+\end{verbatim}
+
+\textbf{Características del Modelo Final:}
+\begin{itemize}
+    \item \textbf{Regularización L1:} Favorece la selección automática de características, eliminando coeficientes irrelevantes
+    \item \textbf{Solver SAGA:} Optimizador eficiente para grandes datasets con regularización L1
+    \item \textbf{Pipeline Integrado:} Incluye todo el preprocesado (transformaciones logarítmicas y RobustScaler)
+    \item \textbf{Entrenamiento Completo:} Utiliza todos los 4 millones de observaciones disponibles
+\end{itemize}
+
+Este modelo final combina la eficiencia computacional de Logistic Regression con un pipeline robusto de preprocesado y hiperparámetros optimizados para la clasificación astronómica.
+
+\subsection{Probar con Dataset de Test}
+
+El modelo final se evaluó en el conjunto de prueba independiente de 1 millón de observaciones astronómicas para validar su capacidad de generalización real.
+
+\textbf{Resultado Final:}
+\begin{center}
+\Large \textbf{Accuracy: 94.24\%}
+\end{center}
+
+\textbf{Análisis de la Matriz de Confusión:}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{matriz_confusion.png}
+    \caption{Matriz de confusión del modelo final en el dataset de test. Se muestran las predicciones para 1 millón de objetos astronómicos clasificados como STAR (0) o GALAXY (1).}
+    \label{fig:matriz_confusion}
+\end{figure}
+
+\textbf{Interpretación de Resultados:}
+\begin{itemize}
+    \item \textbf{Verdaderos Positivos (Galaxias):} 942,614 galaxias correctamente identificadas
+    \item \textbf{Verdaderos Negativos (Estrellas):} 942,122 estrellas correctamente identificadas  
+    \item \textbf{Falsos Positivos:} 57,390 estrellas clasificadas incorrectamente como galaxias
+    \item \textbf{Falsos Negativos:} 57,874 galaxias clasificadas incorrectamente como estrellas
+\end{itemize}
+
+\textbf{Validación del Rendimiento:}
+El accuracy de 94.24\% en el dataset de test confirma que el modelo generaliza efectivamente a datos no vistos, superando las expectativas iniciales del proyecto (>90\%). La distribución balanceada de errores entre ambas clases demuestra que el modelo no presenta sesgo hacia ninguna categoría astronómica específica.
+
+Este resultado valida la efectividad del pipeline completo desarrollado y justifica la selección de Logistic Regression como solución óptima para la clasificación automática de estrellas y galaxias.
+
+\newpage
+
+\section{Conclusión}
+
+\subsection{Conclusiones del Proyecto}
+
+Este proyecto logró desarrollar exitosamente un sistema de clasificación automática para distinguir entre estrellas y galaxias utilizando datos del Sloan Digital Sky Survey (SDSS). Los resultados obtenidos superaron las expectativas iniciales y demuestran la viabilidad de aplicar técnicas de machine learning a problemas de clasificación astronómica.
+
+\textbf{Resultados Principales:}
+\begin{itemize}
+    \item \textbf{Accuracy final: 94.24\%} en el dataset de test, superando el objetivo inicial de >90\%
+    \item \textbf{Modelo seleccionado:} Logistic Regression con regularización L1, elegido por su capacidad de generalización superior y eficiencia computacional
+    \item \textbf{Pipeline robusto:} Desarrollo de un sistema de preprocesado que maneja transformaciones logarítmicas y escalado robusto específico para datos astronómicos
+    \item \textbf{Selección de características:} Identificación de 13 variables clave que capturan las diferencias físicas fundamentales entre objetos puntuales y extendidos
+\end{itemize}
+
+\textbf{Impacto Práctico:}
+El modelo final ofrece una solución eficiente para el procesamiento automático de millones de objetos astronómicos, reduciendo significativamente el tiempo y recursos necesarios para la clasificación manual. Su implementación puede acelerar investigaciones en cosmología y astronomía extragaláctica.
+
+\subsection{Problemas Enfrentados y Soluciones}
+
+Durante el desarrollo del proyecto se encontraron varios desafíos técnicos significativos que requirieron soluciones específicas y metodológicas:
+
+\textbf{1. Tamaño Masivo del Dataset (4 millones de observaciones):}
+\begin{itemize}
+    \item \textbf{Problema:} Limitaciones de memoria y tiempo de procesamiento extremadamente largos
+    \item \textbf{Solución:} Implementación de muestreo estratificado (100,000 muestras) para desarrollo y optimización, manteniendo el balance de clases. Uso del dataset completo solo para entrenamiento final
+\end{itemize}
+
+\textbf{2. Alta Dimensionalidad (51 variables originales):}
+\begin{itemize}
+    \item \textbf{Problema:} Riesgo de maldición de la dimensionalidad y presencia de variables redundantes o irrelevantes
+    \item \textbf{Solución:} Análisis exhaustivo de correlaciones y selección basada en conocimiento del dominio, reduciendo a 13 variables discriminativas clave
+\end{itemize}
+
+\textbf{3. Overfitting Severo en Modelos Complejos:}
+\begin{itemize}
+    \item \textbf{Problema:} Random Forest mostró memorización completa (0.000\% error de entrenamiento vs 4.29\% en validación)
+    \item \textbf{Solución:} Comparación entre errores de entrenamiento y validación cruzada. Selección de Logistic Regression por su estabilidad y capacidad de generalización
+\end{itemize}
+
+\textbf{4. Complejidad de Variables Astronómicas:}
+\begin{itemize}
+    \item \textbf{Problema:} Dificultad para interpretar parámetros técnicos como radios petrosianos, parámetros de Stokes y diferencias entre magnitudes PSF vs modelo
+    \item \textbf{Solución:} Investigación exhaustiva de literatura astronómica y análisis exploratorio detallado para comprender el significado físico de cada variable
+\end{itemize}
+
+\textbf{5. Distribuciones Altamente Sesgadas:}
+\begin{itemize}
+    \item \textbf{Problema:} Variables con distribuciones log-normales extremas y concentración cerca de cero (especialmente flujos y parámetros de Stokes)
+    \item \textbf{Solución:} Implementación de transformaciones logarítmicas (log1p) y uso de RobustScaler para manejar outliers astronómicos legítimos sin perder información valiosa
+\end{itemize}
+
+\textbf{Reflexión Personal:}
+Este proyecto evidenció la importancia de combinar conocimiento del dominio con técnicas estadísticas robustas. La principal lección aprendida fue que modelos más complejos no siempre garantizan mejor rendimiento en datos reales, y que la capacidad de generalización debe priorizarse sobre la performance en entrenamiento. El balance entre eficiencia computacional y precisión resultó ser crucial para la viabilidad práctica de la solución desarrollada.
+
+\newpage
+
+\addcontentsline{toc}{section}{Bibliografía}
+\begin{thebibliography}{9}
+
+\bibitem{sklearn_rf}
+Scikit-learn developers. (2025). \textit{sklearn.ensemble.RandomForestClassifier}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html}
+
+\bibitem{sklearn_lr}
+Scikit-learn developers. (2025). \textit{sklearn.linear\_model.LogisticRegression}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}
+
+\bibitem{sklearn_svm}
+Scikit-learn developers. (2025). \textit{sklearn.svm.SVC}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html}
+
+\bibitem{sklearn_knn}
+Scikit-learn developers. (2025). \textit{sklearn.neighbors.KNeighborsClassifier}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html}
+
+\bibitem{kaggle_dataset}
+Hari31416. (2024). \textit{CelestialClassify - Stellar and Galactic Classification Dataset}. Kaggle. 
+Disponible en: \url{https://www.kaggle.com/datasets/hari31416/celestialclassify}
+
+\bibitem{colab_notebook}
+De Alba, J.P. (2025). \textit{Clasificación Binaria de Estrellas y Galaxias - Notebook de Implementación}. Google Colab. 
+Disponible en: \url{https://colab.research.google.com/drive/1Z7cGOq95QmInkWO31x2LaOZ4O5ohhJIZ?usp=sharing}
+
+\bibitem{sklearn_robustscaler}
+Scikit-learn developers. (2025). \textit{sklearn.preprocessing.RobustScaler}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.RobustScaler.html}
+
+\bibitem{sklearn_simpleimputer}
+Scikit-learn developers. (2025). \textit{sklearn.impute.SimpleImputer}. 
+Disponible en: \url{https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html}
+
+\bibitem{accuracy_metric}
+CloudFactory. (2024). \textit{Accuracy - Machine Learning Metrics}. CloudFactory Wiki. 
+Disponible en: \url{https://wiki.cloudfactory.com/docs/mp-wiki/metrics/accuracy}
+
+\bibitem{recall_metric}
+CloudFactory. (2024). \textit{Recall - Machine Learning Metrics}. CloudFactory Wiki. 
+Disponible en: \url{https://wiki.cloudfactory.com/docs/mp-wiki/metrics/recall}
+
+\bibitem{fscore_metric}
+CloudFactory. (2024). \textit{F-Beta Score - Machine Learning Metrics}. CloudFactory Wiki. 
+Disponible en: \url{https://wiki.cloudfactory.com/docs/mp-wiki/metrics/f-beta-score}
+
+\bibitem{precision_metric}
+CloudFactory. (2024). \textit{Precision - Machine Learning Metrics}. CloudFactory Wiki. 
+Disponible en: \url{https://wiki.cloudfactory.com/docs/mp-wiki/metrics/precision}
+
+\bibitem{roc_metric}
+CloudFactory. (2024). \textit{Precision-Recall Curve and AUC-PR - Machine Learning Metrics}. CloudFactory Wiki. 
+Disponible en: \url{https://wiki.cloudfactory.com/docs/mp-wiki/metrics/precision-recall-curve-and-auc-pr}
+
+\end{thebibliography}
+
+\end{document}
