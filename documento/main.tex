@@ -21,7 +21,7 @@
 
 \title{Introducción al Aprendizaje Automático: Clasificación Binaria de Estrellas y Galaxias}
 \author{Juan Pablo de Alba Tamayo}
-\date{June 2025}
+\date{Junio 2025}
 
 \begin{document}
 
@@ -56,7 +56,7 @@
 % Contenido del documento
 \section{Introducción}
 
-La astronomía moderna se enfrenta al desafío de procesar y clasificar enormes volúmenes de datos provenientes de observaciones astronómicas. Con el advenimiento de telescopios de gran campo y estudios de cielo profundo, la cantidad de objetos celestes detectados ha crecido exponencialmente, haciendo impracticable la clasificación manual de cada uno de estos objetos. En este contexto, la diferenciación entre estrellas y galaxias representa uno de los problemas fundamentales de clasificación en astronomía, ya que estas dos clases de objetos constituyen la mayoría de las fuentes puntuales detectadas en los estudios fotométricos.
+La astronomía moderna se enfrenta al desafío de procesar y clasificar enormes volúmenes de datos provenientes de observaciones astronómicas. Con el uso de telescopios de gran tamaño y estudios de cielo profundo, la cantidad de objetos celestes detectados ha crecido exponencialmente, haciendo impracticable la clasificación manual de cada uno de estos objetos. En este contexto, la diferenciación entre estrellas y galaxias representa uno de los problemas fundamentales de clasificación en astronomía, ya que estas dos clases de objetos constituyen la mayoría de las fuentes puntuales detectadas en los estudios fotométricos.
 
 El aprendizaje automático ha emergido como una herramienta poderosa para abordar este tipo de problemas de clasificación a gran escala. Los algoritmos de machine learning pueden identificar patrones complejos en las características observacionales de los objetos astronómicos, permitiendo una clasificación automática y eficiente. Las técnicas de clasificación binaria son particularmente útiles en este contexto, ya que pueden distinguir entre dos clases bien definidas basándose en características como magnitudes fotométricas, colores, morfología y otras propiedades observables.
 
@@ -72,7 +72,7 @@ El objetivo principal de este proyecto es desarrollar un sistema de clasificaci�
 
 \begin{itemize}
     \item Implementar y comparar el rendimiento de cuatro algoritmos de clasificación binaria: Random Forest, Regresión Logística, Máquinas de Vectores de Soporte (SVM) y K-Nearest Neighbors (KNN).
-    \item Realizar un análisis exhaustivo de los datos fotométricos disponibles, incluyendo la exploración de patrones, distribuciones y correlaciones entre variables.
+    \item Realizar un análisis de los datos fotométricos disponibles, incluyendo la exploración de patrones, distribuciones y correlaciones entre variables.
     \item Aplicar técnicas de preprocesamiento de datos apropiadas, como transformaciones logarítmicas y escalado robusto, para optimizar el rendimiento de los modelos.
     \item Optimizar los hiperparámetros de cada algoritmo mediante técnicas de búsqueda aleatoria (RandomizedSearch) para maximizar su efectividad.
     \item Identificar el modelo que proporcione la mejor capacidad de generalización y precisión en la clasificación de objetos astronómicos no vistos previamente.
@@ -84,10 +84,9 @@ Se espera que al finalizar este proyecto se haya logrado:
 
 \begin{itemize}
     \item Alcanzar una precisión de clasificación superior al 90\% en el conjunto de datos de prueba, considerando la naturaleza bien diferenciada de las características entre estrellas y galaxias.
-    \item Demostrar que los algoritmos ensemble como Random Forest proporcionan un rendimiento superior debido a su capacidad de manejar características complejas y no lineales presentes en los datos astronómicos.
+    \item Demostrar que los algoritmos como Random Forest proporcionan un rendimiento superior debido a su capacidad de manejar características complejas y no lineales presentes en los datos astronómicos.
     \item Identificar las variables fotométricas más discriminativas para la clasificación, contribuyendo al conocimiento sobre qué características observacionales son más útiles para esta tarea.
     \item Establecer un pipeline de procesamiento de datos robusto que pueda ser aplicado a futuros conjuntos de datos astronómicos similares.
-    \item Proporcionar un análisis comparativo detallado que sirva como referencia para futuros trabajos en clasificación astronómica automatizada.
 \end{itemize}
 
 \subsubsection{Métricas de Evaluación}
@@ -247,7 +246,7 @@ Las siguientes figuras muestran el resumen estadístico completo de todas las va
 
 \subsection{Distribución de Datos}
 
-El análisis de distribución de datos es fundamental para entender las características del conjunto de datos y las diferencias entre las clases de objetos astronómicos. Se realizó un estudio exhaustivo que incluye el balance de clases, distribuciones univariadas y análisis de valores atípicos.
+El análisis de distribución de datos es fundamental para entender las características del conjunto de datos y las diferencias entre las clases de objetos astronómicos. Se realizó un estudio que incluye el balance de clases, distribuciones univariadas y análisis de valores atípicos.
 
 \subsubsection{Balance de Clases}
 
@@ -379,7 +378,7 @@ El análisis de correlación es fundamental para comprender las relaciones entre
 
 \subsubsection{Correlación con la Variable Objetivo}
 
-Se calculó la correlación de Pearson entre todas las variables numéricas y la variable objetivo (\texttt{type\_numeric}), donde las estrellas se codificaron como 0 y 
+Se calculó la correlación entre todas las variables numéricas y la variable objetivo (\texttt{type\_numeric}), donde las estrellas se codificaron como 0 y 
 las galaxias como 1. Este análisis permite identificar qué variables tienen el mayor poder discriminativo para distinguir entre ambas clases de objetos astronómicos.
 
 \begin{figure}[H]
@@ -510,7 +509,7 @@ La selección de variables es un paso crítico en el desarrollo de modelos de ma
 
 \subsubsection{Criterios de Selección}
 
-La selección de variables se basó en múltiples criterios complementarios derivados del análisis exhaustivo realizado en las secciones anteriores:
+La selección de variables se basó en múltiples criterios complementarios derivados del análisis realizado en las secciones anteriores:
 
 \textbf{1. Análisis de Correlación con el Objetivo:}
 Se priorizaron las variables que mostraron las correlaciones más altas (en valor absoluto) con la variable objetivo \texttt{type\_numeric}, ya que estas variables tienen el mayor poder discriminativo individual.
@@ -596,7 +595,7 @@ Esta selección optimizada de variables forma la base para el entrenamiento de l
 
 \subsection{Preprocesado (Logaritmo, RobustScaler)}
 
-El preprocesado de datos es fundamental para optimizar el rendimiento de los algoritmos de machine learning, especialmente cuando se trabaja con datos astronómicos que presentan distribuciones altamente sesgadas y valores atípicos significativos. Se desarrolló un pipeline de preprocesado sofisticado que aplica diferentes transformaciones según las características específicas de cada variable.
+El preprocesado de datos es fundamental para optimizar el rendimiento de los algoritmos de machine learning, especialmente cuando se trabaja con datos astronómicos que presentan distribuciones altamente sesgadas y valores atípicos significativos. Se desarrolló un pipeline de preprocesado que aplica diferentes transformaciones según las características específicas de cada variable.
 
 \subsubsection{Arquitectura del Pipeline de Preprocesado}
 
@@ -639,7 +638,6 @@ Las variables astronómicas, particularmente aquellas relacionadas con flujos y 
 
 \begin{itemize}
     \item \textbf{Corrección de asimetría:} Muchas variables astronómicas muestran distribuciones altamente sesgadas hacia la derecha
-    \item \textbf{Estabilización de varianza:} La transformación logarítmica reduce la heteroscedasticidad en los datos
     \item \textbf{Normalización de distribuciones:} Aproxima las distribuciones a una forma más normal, beneficiando algoritmos como la Regresión Logística
     \item \textbf{Mejor separabilidad:} Mejora la capacidad de los algoritmos para encontrar patrones discriminativos
 \end{itemize}
@@ -737,7 +735,7 @@ Se compararán los errores de entrenamiento con los errores de validación cruza
 
 \subsection{Random Forest}
 
-Random Forest es un algoritmo de ensemble que combina múltiples árboles de decisión para crear un clasificador robusto y preciso. Es especialmente efectivo para datos astronómicos debido a su capacidad para manejar características no lineales y su resistencia al sobreajuste.
+Random Forest es un algoritmo que combina múltiples árboles de decisión para crear un clasificador robusto y preciso. Es especialmente efectivo para datos astronómicos debido a su capacidad para manejar características no lineales y su resistencia al sobreajuste.
 
 \textbf{Características Principales:}
 \begin{itemize}
@@ -751,7 +749,7 @@ Random Forest es un algoritmo de ensemble que combina múltiples árboles de dec
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\linewidth]{pipeline_random_forest.png}
-    \caption{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble.}
+    \caption{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador.}
     \label{fig:pipeline_rf}
 \end{figure}
 
@@ -761,7 +759,7 @@ Random Forest es un algoritmo de ensemble que combina múltiples árboles de dec
     \item \texttt{max\_depth}: Profundidad máxima de cada árbol
     \item \texttt{min\_samples\_split}: Mínimo de muestras para dividir un nodo
     \item \texttt{min\_samples\_leaf}: Mínimo de muestras en cada hoja
-    \item \texttt{random\_state}: Semilla para reproducibilidad
+    \item \texttt{random\_state}: Semilla para el generador de números aleatorios
 \end{itemize}
 
 \textbf{Referencia:} \textit{sklearn.ensemble.RandomForestClassifier} \cite{sklearn_rf}
@@ -775,7 +773,7 @@ La Regresión Logística es un algoritmo lineal que utiliza la función logísti
     \item Modelo lineal con función de activación logística (sigmoide)
     \item Proporciona probabilidades de clasificación interpretables
     \item Eficiente computacionalmente y rápido en entrenamiento
-    \item Asume relación lineal entre características y log-odds
+    \item Asume relación lineal entre características
 \end{itemize}
 
 \textbf{Pipeline Implementado:}
@@ -792,7 +790,7 @@ La Regresión Logística es un algoritmo lineal que utiliza la función logísti
     \item \texttt{penalty}: Tipo de regularización ('l1', 'l2', 'elasticnet')
     \item \texttt{solver}: Algoritmo de optimización ('liblinear', 'lbfgs', 'saga')
     \item \texttt{max\_iter}: Número máximo de iteraciones para convergencia
-    \item \texttt{random\_state}: Semilla para reproducibilidad
+    \item \texttt{random\_state}: Semilla para el generador de números aleatorios
 \end{itemize}
 
 \textbf{Referencia:} \textit{sklearn.linear\_model.LogisticRegression} \cite{sklearn_lr}
@@ -823,7 +821,7 @@ Support Vector Machine (SVM) es un algoritmo de máximo margen que busca el hipe
     \item \texttt{kernel}: Tipo de kernel ('linear', 'poly', 'rbf', 'sigmoid')
     \item \texttt{gamma}: Parámetro del kernel RBF ('scale', 'auto', o valor numérico)
     \item \texttt{degree}: Grado del kernel polinomial
-    \item \texttt{random\_state}: Semilla para reproducibilidad
+        \item \texttt{random\_state}: Semilla para el generador de números aleatorios
 \end{itemize}
 
 \textbf{Referencia:} \textit{sklearn.svm.SVC} \cite{sklearn_svm}
@@ -866,7 +864,7 @@ K-Nearest Neighbors (KNN) es un algoritmo no paramétrico basado en instancias q
 
 \subsection{Comparación de Modelos}
 
-Después de entrenar y evaluar los cuatro algoritmos de clasificación con el pipeline de preprocesado desarrollado, se realizó un análisis comparativo exhaustivo de su rendimiento. La evaluación se basó en las métricas definidas previamente y la metodología de validación cruzada establecida.
+Después de entrenar y evaluar los cuatro algoritmos de clasificación con el pipeline de preprocesado desarrollado, se realizó un análisis comparativo de su rendimiento. La evaluación se basó en las métricas definidas previamente y la metodología de validación cruzada establecida.
 
 \subsubsection{Resultados Comparativos Generales}
 
@@ -887,7 +885,7 @@ SVM  & 0.9545 & 0.9545 & 0.9545 \\
 KNN  & 0.9425 & 0.9425 & 0.9425 \\
 \hline
 \end{tabular}
-\caption{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales.}
+\caption{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran las métricas de evaluación principales.}
 \label{tab:comparacion_completa}
 \end{table}
 
@@ -1067,8 +1065,8 @@ Durante el desarrollo del proyecto se encontraron varios desafíos técnicos sig
 
 \textbf{2. Alta Dimensionalidad (51 variables originales):}
 \begin{itemize}
-    \item \textbf{Problema:} Riesgo de maldición de la dimensionalidad y presencia de variables redundantes o irrelevantes
-    \item \textbf{Solución:} Análisis exhaustivo de correlaciones y selección basada en conocimiento del dominio, reduciendo a 13 variables discriminativas clave
+    \item \textbf{Problema:} Riesgo de sobreajuste con la dimensionalidad y presencia de variables redundantes o irrelevantes
+    \item \textbf{Solución:} Análisis de correlaciones y selección basada en conocimiento del dominio, reduciendo a 13 variables discriminativas clave
 \end{itemize}
 
 \textbf{3. Overfitting Severo en Modelos Complejos:}

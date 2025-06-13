@@ -27,7 +27,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Posición y Movimiento}{9}{subsubsection.3.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Magnitudes Fotométricas}{9}{subsubsection.3.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Parámetros Morfológicos}{9}{subsubsection.3.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Parámetros de Stokes}{10}{subsubsection.3.1.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Parámetros de Stokes}{9}{subsubsection.3.1.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}Revisión de Calidad de Datos}{10}{subsubsection.3.1.6}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Información general del dataset obtenida con df.info(). Se confirma la estructura completa con 4,000,000 entradas, 51 columnas sin valores nulos, y un uso de memoria de 1.5+ GB. Los tipos de datos incluyen enteros (int64), flotantes (float64) y objetos (object) para la variable objetivo.}}{11}{figure.1}\protected@file@percent }
 \newlabel{fig:info_dataset}{{1}{11}{Información general del dataset obtenida con df.info(). Se confirma la estructura completa con 4,000,000 entradas, 51 columnas sin valores nulos, y un uso de memoria de 1.5+ GB. Los tipos de datos incluyen enteros (int64), flotantes (float64) y objetos (object) para la variable objetivo}{figure.1}{}}
@@ -74,14 +74,14 @@
 \citation{sklearn_robustscaler}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning.}}{21}{figure.12}\protected@file@percent }
 \newlabel{fig:transformacion_logaritmica}{{12}{21}{Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Selección de RobustScaler}{21}{subsubsection.4.3.3}\protected@file@percent }
 \citation{sklearn_simpleimputer}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Selección de RobustScaler}{22}{subsubsection.4.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Estrategia de Imputación}{22}{subsubsection.4.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.5}Optimización de Rendimiento}{22}{subsubsection.4.3.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}Modelos de Machine Learning}{23}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Random Forest}{23}{subsection.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble.}}{23}{figure.13}\protected@file@percent }
-\newlabel{fig:pipeline_rf}{{13}{23}{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador ensemble}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador.}}{23}{figure.13}\protected@file@percent }
+\newlabel{fig:pipeline_rf}{{13}{23}{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador}{figure.13}{}}
 \citation{sklearn_rf}
 \citation{sklearn_lr}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Logistic Regression}{24}{subsection.5.2}\protected@file@percent }
@@ -98,8 +98,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {6}Resultados}{27}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Comparación de Modelos}{27}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Resultados Comparativos Generales}{27}{subsubsection.6.1.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales.}}{27}{table.1}\protected@file@percent }
-\newlabel{tab:comparacion_completa}{{1}{27}{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran los errores de entrenamiento, validación cruzada y las métricas de evaluación principales}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparación completa del rendimiento de todos los modelos evaluados. Se muestran las métricas de evaluación principales.}}{27}{table.1}\protected@file@percent }
+\newlabel{tab:comparacion_completa}{{1}{27}{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran las métricas de evaluación principales}{table.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Análisis de Sobreajuste}{27}{subsubsection.6.1.2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste.}}{27}{table.2}\protected@file@percent }
 \newlabel{tab:analisis_overfitting}{{2}{27}{Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste}{table.2}{}}
