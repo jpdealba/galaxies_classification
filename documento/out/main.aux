@@ -10,11 +10,11 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \babel@aux{spanish}{}
 \citation{colab_notebook}
+\citation{accuracy_metric}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introducción}{7}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Definición del Proyecto}{7}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Objetivo}{7}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Expectativas}{7}{subsection.2.2}\protected@file@percent }
-\citation{accuracy_metric}
 \citation{precision_metric}
 \citation{recall_metric}
 \citation{fscore_metric}
@@ -39,10 +39,10 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Distribución de las clases en el dataset. Se observa que las variables tienen el conteo completo de 4,000,000 observaciones.}}{12}{figure.3}\protected@file@percent }
 \newlabel{fig:count}{{3}{12}{Distribución de las clases en el dataset. Se observa que las variables tienen el conteo completo de 4,000,000 observaciones}{figure.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Análisis de Distribuciones por Variable}{13}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Histogramas de variables con distribuciones relativamente normales. Se muestran ejemplos representativos de las 52 columnas del dataset. Estas variables requieren preprocesamiento mínimo y son candidatas ideales para el escalado estándar.}}{13}{figure.4}\protected@file@percent }
-\newlabel{fig:variables_normales}{{4}{13}{Histogramas de variables con distribuciones relativamente normales. Se muestran ejemplos representativos de las 52 columnas del dataset. Estas variables requieren preprocesamiento mínimo y son candidatas ideales para el escalado estándar}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Histogramas de variables con distribuciones altamente sesgadas. Se observa la concentración de valores cerca de cero y colas extremas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos que ilustran los patrones identificados en el análisis completo.}}{14}{figure.5}\protected@file@percent }
-\newlabel{fig:variables_sesgadas}{{5}{14}{Histogramas de variables con distribuciones altamente sesgadas. Se observa la concentración de valores cerca de cero y colas extremas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos que ilustran los patrones identificados en el análisis completo}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Histogramas con curvas de densidad KDE de variables con distribuciones relativamente normales. Las curvas de densidad (generadas con \texttt  {sns.histplot} y \texttt  {kde=True}) proporcionan una representación suave de la distribución, facilitando la identificación de patrones y modas. Se muestran ejemplos representativos de las 52 columnas del dataset.}}{13}{figure.4}\protected@file@percent }
+\newlabel{fig:variables_normales}{{4}{13}{Histogramas con curvas de densidad KDE de variables con distribuciones relativamente normales. Las curvas de densidad (generadas con \texttt {sns.histplot} y \texttt {kde=True}) proporcionan una representación suave de la distribución, facilitando la identificación de patrones y modas. Se muestran ejemplos representativos de las 52 columnas del dataset}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Histogramas con curvas de densidad KDE de variables con distribuciones altamente sesgadas. Las curvas de densidad revelan claramente la concentración de valores cerca de cero y las colas extremas. La estimación por kernel (KDE) ayuda a visualizar mejor la forma de estas distribuciones asimétricas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos.}}{14}{figure.5}\protected@file@percent }
+\newlabel{fig:variables_sesgadas}{{5}{14}{Histogramas con curvas de densidad KDE de variables con distribuciones altamente sesgadas. Las curvas de densidad revelan claramente la concentración de valores cerca de cero y las colas extremas. La estimación por kernel (KDE) ayuda a visualizar mejor la forma de estas distribuciones asimétricas. Debido a la cantidad de columnas (52), se muestran ejemplos representativos}{figure.5}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Identificación de Valores Atípicos}{15}{subsubsection.3.2.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Boxplots de magnitudes fotométricas mostrando la presencia de valores atípicos. Estos outliers representan objetos astronómicos reales (muy brillantes o muy débiles) y contienen información valiosa para la clasificación.}}{15}{figure.6}\protected@file@percent }
 \newlabel{fig:boxplot1}{{6}{15}{Boxplots de magnitudes fotométricas mostrando la presencia de valores atípicos. Estos outliers representan objetos astronómicos reales (muy brillantes o muy débiles) y contienen información valiosa para la clasificación}{figure.6}{}}
@@ -62,69 +62,65 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Limpieza}{18}{subsection.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Verificación de Valores Faltantes y Duplicados}{18}{subsubsection.4.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Eliminación de Variables No Informativas}{18}{subsubsection.4.1.2}\protected@file@percent }
+\citation{chi2_test}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Codificación de la Variable Objetivo}{19}{subsubsection.4.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Selección de Variables}{19}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Criterios de Selección}{19}{subsubsection.4.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Variables Seleccionadas}{19}{subsubsection.4.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Preprocesado (Logaritmo, RobustScaler)}{20}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Arquitectura del Pipeline de Preprocesado}{20}{subsubsection.4.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar.}}{20}{figure.11}\protected@file@percent }
-\newlabel{fig:pipeline_preprocesado}{{11}{20}{Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar}{figure.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Transformación Logarítmica}{20}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Validación Estadística de la Selección}{20}{subsubsection.4.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Estadísticos chi-cuadrado para las variables seleccionadas. Valores más altos indican mayor asociación con la variable objetivo. Todas las variables muestran estadísticos muy elevados, confirmando su relevancia discriminativa.}}{20}{figure.11}\protected@file@percent }
+\newlabel{fig:chi2}{{11}{20}{Estadísticos chi-cuadrado para las variables seleccionadas. Valores más altos indican mayor asociación con la variable objetivo. Todas las variables muestran estadísticos muy elevados, confirmando su relevancia discriminativa}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces P-valores asociados a la prueba chi-cuadrado para cada variable. Todos los p-valores son prácticamente cero, rechazando la hipótesis nula de independencia.}}{21}{figure.12}\protected@file@percent }
+\newlabel{fig:pvalue}{{12}{21}{P-valores asociados a la prueba chi-cuadrado para cada variable. Todos los p-valores son prácticamente cero, rechazando la hipótesis nula de independencia}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Preprocesado (Logaritmo, RobustScaler)}{21}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Arquitectura del Pipeline de Preprocesado}{21}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar.}}{22}{figure.13}\protected@file@percent }
+\newlabel{fig:pipeline_preprocesado}{{13}{22}{Diagrama del pipeline de preprocesado implementado. Se muestra la arquitectura del ColumnTransformer con dos ramas de procesamiento: una para variables que requieren transformación logarítmica y otra para variables estándar}{figure.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Transformación}{22}{subsubsection.4.3.2}\protected@file@percent }
 \citation{sklearn_robustscaler}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning.}}{21}{figure.12}\protected@file@percent }
-\newlabel{fig:transformacion_logaritmica}{{12}{21}{Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning}{figure.12}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Selección de RobustScaler}{21}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning.}}{23}{figure.14}\protected@file@percent }
+\newlabel{fig:transformacion_logaritmica}{{14}{23}{Ejemplo de la efectividad de la transformación logarítmica en variables con distribuciones altamente sesgadas. Se muestra la comparación entre las distribuciones originales (izquierda) y después de aplicar log1p (derecha) para modelFlux\_i y modelFlux\_z. La transformación convierte distribuciones extremadamente sesgadas en distribuciones más simétricas y manejables para los algoritmos de machine learning}{figure.14}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Selección de RobustScaler}{23}{subsubsection.4.3.3}\protected@file@percent }
 \citation{sklearn_simpleimputer}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Estrategia de Imputación}{22}{subsubsection.4.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.5}Optimización de Rendimiento}{22}{subsubsection.4.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Modelos de Machine Learning}{23}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Random Forest}{23}{subsection.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador.}}{23}{figure.13}\protected@file@percent }
-\newlabel{fig:pipeline_rf}{{13}{23}{Pipeline completo para Random Forest, integrando el preprocesado de datos con el clasificador}{figure.13}{}}
-\citation{sklearn_rf}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Estrategia de Imputación}{24}{subsubsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.5}Optimización de Rendimiento}{24}{subsubsection.4.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Modelo de Machine Learning}{25}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Regresión Logística}{25}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Pipeline completo para Regresión Logística, integrando el preprocesado especializado para datos astronómicos con el clasificador optimizado.}}{25}{figure.15}\protected@file@percent }
+\newlabel{fig:pipeline_lr}{{15}{25}{Pipeline completo para Regresión Logística, integrando el preprocesado especializado para datos astronómicos con el clasificador optimizado}{figure.15}{}}
 \citation{sklearn_lr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Logistic Regression}{24}{subsection.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Pipeline completo para Regresión Logística, donde el preprocesado es crucial para la normalización de características.}}{24}{figure.14}\protected@file@percent }
-\newlabel{fig:pipeline_lr}{{14}{24}{Pipeline completo para Regresión Logística, donde el preprocesado es crucial para la normalización de características}{figure.14}{}}
-\citation{sklearn_svm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}SVM}{25}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Pipeline completo para SVM, donde la normalización de datos es fundamental para el correcto funcionamiento del algoritmo.}}{25}{figure.15}\protected@file@percent }
-\newlabel{fig:pipeline_svm}{{15}{25}{Pipeline completo para SVM, donde la normalización de datos es fundamental para el correcto funcionamiento del algoritmo}{figure.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}KNN}{25}{subsection.5.4}\protected@file@percent }
-\citation{sklearn_knn}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Pipeline completo para KNN, donde la normalización es crítica debido a la sensibilidad del algoritmo a la escala de las características.}}{26}{figure.16}\protected@file@percent }
-\newlabel{fig:pipeline_knn}{{16}{26}{Pipeline completo para KNN, donde la normalización es crítica debido a la sensibilidad del algoritmo a la escala de las características}{figure.16}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Resultados}{27}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Comparación de Modelos}{27}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Resultados Comparativos Generales}{27}{subsubsection.6.1.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparación completa del rendimiento de todos los modelos evaluados. Se muestran las métricas de evaluación principales.}}{27}{table.1}\protected@file@percent }
-\newlabel{tab:comparacion_completa}{{1}{27}{Comparación completa del rendimiento de todos los modelos evaluados. Se muestran las métricas de evaluación principales}{table.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Análisis de Sobreajuste}{27}{subsubsection.6.1.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste.}}{27}{table.2}\protected@file@percent }
-\newlabel{tab:analisis_overfitting}{{2}{27}{Comparación entre errores de entrenamiento y validación cruzada para detectar sobreajuste}{table.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.3}Interpretación de Resultados}{27}{subsubsection.6.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.4}Selección del Modelo Final}{27}{subsubsection.6.1.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}RandomizedSearch}{28}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Modelo Final}{28}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Probar con Dataset de Test}{29}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Comparación de Técnicas de Validación}{27}{subsection.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Comparación entre train\_test\_split (80\%-20\%) y validación cruzada de 5 folds. Ambas técnicas muestran resultados consistentes, confirmando la estabilidad del modelo.}}{27}{figure.16}\protected@file@percent }
+\newlabel{fig:validacion}{{16}{27}{Comparación entre train\_test\_split (80\%-20\%) y validación cruzada de 5 folds. Ambas técnicas muestran resultados consistentes, confirmando la estabilidad del modelo}{figure.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Optimización de Hiperparámetros}{27}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Implementación del Modelo Final}{28}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Evaluación en Dataset de Test}{28}{subsection.6.4}\protected@file@percent }
+\citation{cohen_kappa}
 \@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Matriz de confusión del modelo final en el dataset de test. Se muestran las predicciones para 1 millón de objetos astronómicos clasificados como STAR (0) o GALAXY (1).}}{29}{figure.17}\protected@file@percent }
 \newlabel{fig:matriz_confusion}{{17}{29}{Matriz de confusión del modelo final en el dataset de test. Se muestran las predicciones para 1 millón de objetos astronómicos clasificados como STAR (0) o GALAXY (1)}{figure.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Índice Kappa de Cohen}{29}{subsection.6.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Resultado del índice kappa de Cohen para el modelo final. El valor obtenido demuestra una concordancia casi perfecta entre las predicciones del modelo y las etiquetas verdaderas.}}{29}{figure.18}\protected@file@percent }
+\newlabel{fig:kappa}{{18}{29}{Resultado del índice kappa de Cohen para el modelo final. El valor obtenido demuestra una concordancia casi perfecta entre las predicciones del modelo y las etiquetas verdaderas}{figure.18}{}}
+\citation{roc_analysis}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Análisis de la Curva ROC}{30}{subsection.6.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Curva ROC del modelo final mostrando un AUC de 0.99. La curva se aproxima al punto óptimo (0,1), indicando un rendimiento excelente. La línea punteada representa el rendimiento aleatorio (AUC = 0.50).}}{30}{figure.19}\protected@file@percent }
+\newlabel{fig:roc_curve}{{19}{30}{Curva ROC del modelo final mostrando un AUC de 0.99. La curva se aproxima al punto óptimo (0,1), indicando un rendimiento excelente. La línea punteada representa el rendimiento aleatorio (AUC = 0.50)}{figure.19}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Conclusión}{31}{section.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Conclusiones del Proyecto}{31}{subsection.7.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Problemas Enfrentados y Soluciones}{31}{subsection.7.2}\protected@file@percent }
-\bibcite{sklearn_rf}{1}
-\bibcite{sklearn_lr}{2}
-\bibcite{sklearn_svm}{3}
-\bibcite{sklearn_knn}{4}
-\bibcite{kaggle_dataset}{5}
-\bibcite{colab_notebook}{6}
-\bibcite{sklearn_robustscaler}{7}
-\bibcite{sklearn_simpleimputer}{8}
-\bibcite{accuracy_metric}{9}
-\bibcite{recall_metric}{10}
-\bibcite{fscore_metric}{11}
-\bibcite{precision_metric}{12}
-\bibcite{roc_metric}{13}
+\bibcite{sklearn_lr}{1}
+\bibcite{kaggle_dataset}{2}
+\bibcite{colab_notebook}{3}
+\bibcite{sklearn_robustscaler}{4}
+\bibcite{sklearn_simpleimputer}{5}
+\bibcite{accuracy_metric}{6}
+\bibcite{recall_metric}{7}
+\bibcite{fscore_metric}{8}
+\bibcite{precision_metric}{9}
+\bibcite{roc_metric}{10}
+\bibcite{cohen_kappa}{11}
+\bibcite{roc_analysis}{12}
+\bibcite{chi2_test}{13}
 \@writefile{toc}{\contentsline {section}{Bibliografía}{33}{subsection.7.2}\protected@file@percent }
 \gdef \@abspage@last{33}
