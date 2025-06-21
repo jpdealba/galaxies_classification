@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1750468992.5557 "c:/Users/jpdealba/Documents/Programacion/estudio/maestria/proyecto/documento/main.tex" "out/main.pdf" "main" 1750468994.21788 0
+["pdflatex"] 1750472520.93271 "c:/Users/jpdealba/Documents/Programacion/estudio/maestria/proyecto/documento/main.tex" "out/main.pdf" "main" 1750472522.63654 0
   "C:/Users/jpdealba/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749546074 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/jpdealba/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1749545422 24226462 8ccdedd01c258bbf10018acc2c290221 ""
   "C:/Users/jpdealba/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -105,7 +105,7 @@
   "boxplot_1.png" 1749548530 27921 8560e5eaadfc09531d1837daadb6f99f ""
   "boxplot_2.png" 1749548549 34098 e76b399249a044c4f7e3d8773f052811 ""
   "boxplot_3.png" 1749548567 25403 7e43d8cf84dea3d17c5bc44f4202f2cb ""
-  "c:/Users/jpdealba/Documents/Programacion/estudio/maestria/proyecto/documento/main.tex" 1750468991 62951 9a575cc806e6b527cd42afccaee3ddbc ""
+  "c:/Users/jpdealba/Documents/Programacion/estudio/maestria/proyecto/documento/main.tex" 1750472516 62345 413c919d7fd416feb61457a5d821e7ea ""
   "chi2.png" 1750466797 26306 921efa3b3eba72c7c086e5b6f6e3a752 ""
   "correlacion_1.png" 1749549182 49401 951d83b90a8309b247aa543ceec58a22 ""
   "correlacion_2.png" 1749549207 195468 6c2da4ffd479e3b37edbc294271d3f14 ""
@@ -115,12 +115,12 @@
   "kappa.png" 1750465124 1387 901f03db959c1d2e7442d4f8b88b6c00 ""
   "logaritmica_ejemplo.png" 1749550608 60038 b9bb28521f400f3f1f4047a8214d0f7a ""
   "logo.png" 1749543882 188560 3deaa5861a3daf7aa0787485c77588f0 ""
-  "main.tex" 1750468991 62951 9a575cc806e6b527cd42afccaee3ddbc ""
+  "main.tex" 1750472516 62345 413c919d7fd416feb61457a5d821e7ea ""
   "matriz_confusion.png" 1749552200 22758 a686d1dc603fe5f5c418f06d4e5f68e6 ""
-  "out/main.aux" 1750468993 20023 647656c5147ac12a60be64190089def1 "pdflatex"
-  "out/main.lof" 1750468994 5910 0b9123c1acab371e6d8952a3583fdf7e "pdflatex"
-  "out/main.out" 1750468994 9817 56fdaaa382a23e85b82b1bbf5a954cd2 "pdflatex"
-  "out/main.toc" 1750468994 4836 9ac8fc85b2c686886a9a7867e35704cb "pdflatex"
+  "out/main.aux" 1750472522 20160 6385b1538b2bc129db752ceb8a842e9b "pdflatex"
+  "out/main.lof" 1750472522 5907 cb5440c86f56c665bb4f6dcc276b6b12 "pdflatex"
+  "out/main.out" 1750472522 10058 957f5dd798eca1fcc52a0d9394e808f6 "pdflatex"
+  "out/main.toc" 1750472522 4938 219c44d30baff9797b502cd6432a96bb "pdflatex"
   "p-value.png" 1750465779 13573 d7adcc9b2a1e0385956612173b72cd27 ""
   "pipeline_logistic_regression.png" 1749551193 17897 062fe6d8072f3be3689f2842264141aa ""
   "preprocesado_pipeline.png" 1749550536 12232 5dd927b5fa2cb9600ebf9fb1d7ac9536 ""

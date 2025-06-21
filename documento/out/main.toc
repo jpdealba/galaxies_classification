@@ -16,10 +16,10 @@
 \contentsline {subsection}{\numberline {3.2}Distribución de Datos}{12}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Balance de Clases}{12}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Análisis de Distribuciones por Variable}{13}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Identificación de Valores Atípicos}{15}{subsubsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.3}Correlación de Datos}{16}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Correlación con la Variable Objetivo}{16}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Matriz de Correlación Completa}{17}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Identificación de Valores Atípicos}{14}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Correlación de Datos}{15}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Correlación con la Variable Objetivo}{15}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Matriz de Correlación Completa}{16}{subsubsection.3.3.2}%
 \contentsline {subsubsection}{\numberline {3.3.3}Exportación para Análisis Detallado}{17}{subsubsection.3.3.3}%
 \contentsline {section}{\numberline {4}Preparación de Datos}{18}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Limpieza}{18}{subsection.4.1}%
@@ -40,12 +40,13 @@
 \contentsline {subsection}{\numberline {5.1}Regresión Logística}{25}{subsection.5.1}%
 \contentsline {section}{\numberline {6}Resultados}{27}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Comparación de Técnicas de Validación}{27}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Optimización de Hiperparámetros}{27}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Implementación del Modelo Final}{28}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Evaluación en Dataset de Test}{28}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Índice Kappa de Cohen}{29}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Análisis de la Curva ROC}{30}{subsection.6.6}%
-\contentsline {section}{\numberline {7}Conclusión}{31}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Conclusiones del Proyecto}{31}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Problemas Enfrentados y Soluciones}{31}{subsection.7.2}%
-\contentsline {section}{Bibliografía}{33}{subsection.7.2}%
+\contentsline {subsection}{\numberline {6.2}Métricas de Evaluación del Modelo}{27}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Optimización de Hiperparámetros}{28}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Implementación del Modelo Final}{28}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Evaluación en Dataset de Test}{29}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Índice Kappa de Cohen}{29}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Análisis de la Curva ROC}{30}{subsection.6.7}%
+\contentsline {section}{\numberline {7}Conclusión}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Conclusiones del Proyecto}{32}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Problemas Enfrentados y Soluciones}{32}{subsection.7.2}%
+\contentsline {section}{Bibliografía}{34}{subsection.7.2}%

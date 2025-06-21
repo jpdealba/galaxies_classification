@@ -51,9 +51,9 @@
 % Contenido del documento
 \section{Introducción}
 
-La astronomía moderna se enfrenta al desafío de procesar y clasificar enormes volúmenes de datos provenientes de observaciones astronómicas. Con el uso de telescopios de gran tamaño y estudios de cielo profundo, la cantidad de objetos celestes detectados ha crecido exponencialmente, haciendo impracticable la clasificación manual de cada uno de estos objetos. En este contexto, la diferenciación entre estrellas y galaxias representa uno de los problemas fundamentales de clasificación en astronomía, ya que estas dos clases de objetos constituyen la mayoría de las fuentes puntuales detectadas en los estudios fotométricos.
+La astronomía moderna se enfrenta al desafío de procesar y clasificar enormes volúmenes de datos provenientes de observaciones astronómicas. Con el uso de telescopios de gran tamaño y estudios de cielo profundo, la cantidad de objetos celestes detectados ha crecido exponencialmente, haciendo impractica la clasificación manual de cada uno de estos objetos. En este contexto, la diferenciación entre estrellas y galaxias representa uno de los problemas fundamentales de clasificación en astronomía, ya que estas dos clases de objetos constituyen la mayoría de las fuentes puntuales detectadas en los estudios fotométricos.
 
-Este proyecto tiene como objetivo desarrollar un sistema de clasificación automática para distinguir entre estrellas y galaxias utilizando técnicas de aprendizaje automático aplicadas a datos fotométricos. Se implementará un modelo de Regresión Logística optimizado que aprovecha las características discriminativas más relevantes de los objetos astronómicos. El análisis incluirá la exploración exhaustiva de los datos, el preprocesamiento especializado para datos astronómicos, la selección de características óptimas y la optimización de hiperparámetros para maximizar la eficacia del modelo. La implementación completa del proyecto se encuentra disponible en un notebook interactivo \cite{colab_notebook}.
+Este proyecto tiene como objetivo desarrollar un sistema de clasificación automática para distinguir entre estrellas y galaxias utilizando técnicas de aprendizaje automático aplicadas a datos fotométricos. Se implementará un modelo de Regresión Logística optimizado que aprovecha las características discriminativas más relevantes de los objetos astronómicos. El análisis incluirá la exploración de los datos, el preprocesamiento especializado para datos astronómicos, la selección de características óptimas y la optimización de hiperparámetros para maximizar la eficacia del modelo. La implementación completa del proyecto se encuentra disponible en un notebook interactivo \cite{colab_notebook}.
 
 
 \section{Definición del Proyecto}
@@ -65,10 +65,10 @@ El objetivo principal de este proyecto es desarrollar un sistema de clasificaci�
 
 \begin{itemize}
     \item Implementar un modelo de Regresión Logística optimizado para la clasificación binaria de estrellas y galaxias.
-    \item Realizar un análisis exhaustivo de los datos fotométricos disponibles, incluyendo la exploración de patrones, distribuciones y correlaciones entre variables.
-    \item Aplicar técnicas de preprocesamiento de datos especializadas, como transformaciones logarítmicas y escalado robusto, optimizadas para características astronómicas.
+    \item Realizar un análisis de los datos fotométricos disponibles, incluyendo la exploración de patrones, distribuciones y correlaciones entre variables.
+    \item Aplicar técnicas de preprocesamiento de datos, como transformaciones logarítmicas y escalado robusto.
     \item Optimizar los hiperparámetros del modelo mediante técnicas de búsqueda aleatoria (RandomizedSearch) para maximizar su efectividad.
-    \item Desarrollar un pipeline robusto que proporcione excelente capacidad de generalización y precisión superior al 90\% en la clasificación de objetos astronómicos.
+    \item Desarrollar un pipeline que proporcione una capacidad de generalización y precisión superior al 90\% en la clasificación de objetos astronómicos.
 \end{itemize}
 
 \subsection{Expectativas}
@@ -77,9 +77,9 @@ Se espera que al finalizar este proyecto se haya logrado:
 
 \begin{itemize}
     \item Alcanzar una precisión de clasificación superior al 90\% en el conjunto de datos de prueba, aprovechando la naturaleza bien diferenciada de las características entre estrellas y galaxias.
-    \item Demostrar que la Regresión Logística, con un preprocesamiento adecuado, puede proporcionar un rendimiento excelente y una capacidad de generalización superior para datos astronómicos.
-    \item Identificar las variables fotométricas más discriminativas para la clasificación, contribuyendo al conocimiento sobre qué características observacionales son más útiles para esta tarea.
-    \item Establecer un pipeline de procesamiento de datos robusto y eficiente que pueda ser aplicado a futuros conjuntos de datos astronómicos similares.
+    \item Demostrar que la Regresión Logística, con un preprocesamiento adecuado, puede proporcionar un rendimiento excelente y una buena capacidad de generalización para los datos.
+    \item Identificar las variables fotométricas más discriminativas para la clasificación, contribuyendo al conocimiento sobre qué características son más útiles.
+    \item Establecer un pipeline de procesamiento de datos eficiente que pueda ser aplicado a futuros conjuntos de datos.
 \end{itemize}
 
 \subsubsection{Métricas de Evaluación}
@@ -118,7 +118,7 @@ Donde: TP = Verdaderos Positivos, TN = Verdaderos Negativos, FP = Falsos Positiv
 
 \subsection{Descripción de Datos}
 
-Los datos utilizados en este proyecto provienen del Sloan Digital Sky Survey (SDSS), uno de los estudios astronómicos más comprehensivos jamás realizados \cite{kaggle_dataset}. El conjunto de datos se divide en dos partes principales:
+Los datos utilizados en este proyecto provienen del Sloan Digital Sky Survey (SDSS), uno de los estudios astronómicos más completos \cite{kaggle_dataset}. El conjunto de datos se divide en dos partes principales:
 
 \begin{itemize}
     \item \textbf{Dataset de Entrenamiento (train.csv):} Contiene aproximadamente 4 millones de observaciones, divididas equitativamente entre 2 millones de estrellas y 2 millones de galaxias. Este conjunto se utiliza para entrenar y validar los modelos de clasificación.
@@ -176,11 +176,11 @@ Estas variables describen la forma y el tamaño aparente de los objetos:
 
 
 
-Antes de proceder con el análisis y modelado, se realizó una evaluación exhaustiva de la calidad y estructura de los datos. Afortunadamente, el dataset del SDSS se encontraba en excelentes condiciones, lo que facilitó significativamente el proceso de análisis.
+Antes de proceder con el análisis y modelado, se realizó una evaluación de la calidad y estructura de los datos. Afortunadamente, el dataset del SDSS se encontraba en excelentes condiciones, lo que facilitó significativamente el proceso de análisis.
 
 \subsubsection{Revisión de Calidad de Datos}
 
-Se llevó a cabo una inspección sistemática para identificar posibles problemas en los datos:
+Se llevó a cabo una revisión de la calidad de los datos para identificar posibles problemas:
 
 \begin{itemize}
     \item \textbf{Valores Faltantes (NaN):} Se verificó la presencia de valores nulos en todas las variables. El análisis reveló que el dataset no contiene valores faltantes, lo cual es característico de la alta calidad del procesamiento de datos del SDSS.
@@ -188,8 +188,6 @@ Se llevó a cabo una inspección sistemática para identificar posibles problema
     \item \textbf{Valores Nulos:} Se confirmó la ausencia de valores nulos en todas las columnas, indicando un dataset completo y consistente.
     
     \item \textbf{Registros Duplicados:} Se realizó una búsqueda de observaciones duplicadas basada en el identificador único (objID). No se encontraron registros duplicados, confirmando la integridad del dataset.
-    
-    \item \textbf{Estructura del Dataset:} El análisis confirmó que el dataset contiene exactamente 51 columnas (variables) como se esperaba, incluyendo todas las características fotométricas, morfológicas y de posición necesarias para la clasificación.
 \end{itemize}
 
 \begin{figure}[H]
@@ -235,11 +233,10 @@ Las siguientes figuras muestran el resumen estadístico completo de todas las va
 %     \label{fig:describe3}
 % \end{figure}
 
-\textbf{Observaciones Clave:} El análisis estadístico confirma que el dataset está completo con exactamente 4,000,000 observaciones para cada variable. Los rangos de valores son consistentes con mediciones astronómicas típicas: magnitudes entre aproximadamente 10-30, radios en el rango de segundos de arco esperados, y coordenadas que cubren una amplia porción del cielo observado por el SDSS.
 
 \subsection{Distribución de Datos}
 
-El análisis de distribución de datos es fundamental para entender las características del conjunto de datos y las diferencias entre las clases de objetos astronómicos. Se realizó un estudio que incluye el balance de clases, distribuciones univariadas y análisis de valores atípicos.
+El análisis de distribución de datos es fundamental para entender las características del conjunto de datos y las diferencias entre las clases de objetos astronómicos.
 
 \subsubsection{Balance de Clases}
 
@@ -393,7 +390,7 @@ las galaxias como 1. Este análisis permite identificar qué variables tienen el
 
 \subsubsection{Matriz de Correlación Completa}
 
-Se generó una matriz de correlación completa que muestra las relaciones entre todas las variables del dataset. Esta matriz es esencial para identificar multicolinealidad y entender la estructura subyacente de los datos astronómicos.
+Se generó una matriz de correlación completa que muestra las relaciones entre todas las variables del dataset. Esta matriz es esencial para identificar multicolinealidad.
 
 \begin{figure}[H]
     \centering
@@ -426,7 +423,7 @@ Debido a la complejidad y el gran número de variables (52 columnas), la matriz 
 
 \subsection{Limpieza}
 
-La fase de limpieza de datos fue sorprendentemente directa debido a la alta calidad del conjunto de datos del SDSS. Se realizaron verificaciones sistemáticas de la integridad de los datos antes de proceder con la selección y transformación de variables.
+La fase de limpieza de datos fue sorprendentemente directa debido a la alta calidad del conjunto de datos del SDSS. Se realizaron verificaciones de la integridad de los datos antes de proceder con la selección y transformación de variables.
 
 \subsubsection{Verificación de Valores Faltantes y Duplicados}
 
@@ -617,7 +614,7 @@ Para validar estadísticamente la relevancia de las variables seleccionadas, se 
     \item \textbf{Validación de la selección}: Los resultados confirman que la selección basada en correlación identificó correctamente las variables más discriminativas
 \end{itemize}
 
-Esta validación estadística proporciona soporte empírico robusto para la selección de variables realizada, demostrando que cada variable contribuye significativamente a la capacidad discriminativa del modelo.
+Esta validación estadística proporciona soporte robusto para la selección de variables realizada, demostrando que cada variable contribuye significativamente a la capacidad discriminativa del modelo.
 
 \subsection{Preprocesado (Logaritmo, RobustScaler)}
 
@@ -813,9 +810,28 @@ Para evaluar la robustez del modelo, se compararon dos técnicas de validación:
 
 La consistencia entre ambas técnicas valida la robustez del modelo y confirma que los resultados no dependen de una división particular de los datos. La baja desviación estándar en validación cruzada indica estabilidad en el rendimiento.
 
+\subsection{Métricas de Evaluación del Modelo}
+
+Se evaluaron múltiples métricas para obtener una visión completa del rendimiento del modelo de Regresión Logística:
+
+\textbf{Resultados de Validación Cruzada:}
+\begin{itemize}
+    \item \textbf{Accuracy:} 94.30\%
+    \item \textbf{F1-Score Macro:} 94.30\%
+    \item \textbf{Recall:} 94.30\%
+\end{itemize}
+
+\textbf{Errores de Entrenamiento vs Validación:}
+\begin{itemize}
+    \item \textbf{Error de entrenamiento:} 5.72\%
+    \item \textbf{Error de validación cruzada:} 5.70\%
+\end{itemize}
+
+Los resultados muestran un rendimiento consistente y balanceado en todas las métricas evaluadas. La similitud entre los errores de entrenamiento y validación indica que el modelo generaliza adecuadamente sin sobreajuste.
+
 \subsection{Optimización de Hiperparámetros}
 
-Para optimizar los hiperparámetros del modelo de Regresión Logística, se implementó una búsqueda aleatoria utilizando \texttt{RandomizedSearchCV} con el siguiente espacio de búsqueda:
+Para optimizar los hiperparámetros del modelo de Regresión Logística, se implementó una búsqueda aleatoria utilizando \texttt{RandomizedSearchCV} con los siguientes parametros:
 
 \begin{verbatim}
 param_distributions = {
@@ -903,26 +919,25 @@ Este resultado valida la efectividad del pipeline completo desarrollado y demues
 
 \subsection{Índice Kappa de Cohen}
 
-Para evaluar más profundamente la concordancia entre las predicciones del modelo y las etiquetas verdaderas, se calculó el índice kappa de Cohen. \cite{cohen_kappa}.
+Para evaluar más profundamente la relación entre las predicciones del modelo y las etiquetas verdaderas, se calculó el índice kappa de Cohen. \cite{cohen_kappa}.
 
 \textbf{Resultado Obtenido: Kappa = 0.94}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\linewidth]{kappa.png}
-    \caption{Resultado del índice kappa de Cohen para el modelo final. El valor obtenido demuestra una concordancia casi perfecta entre las predicciones del modelo y las etiquetas verdaderas.}
+    \caption{Resultado del índice kappa de Cohen para el modelo final. El valor obtenido demuestra una relación significativa entre las predicciones del modelo y las etiquetas verdaderas.}
     \label{fig:kappa}
 \end{figure}
 
 \textbf{Ventajas del Índice Kappa:}
 \begin{itemize}
-    \item \textbf{Ajuste por azar:} Considera la probabilidad de concordancia que ocurriría por casualidad
     \item \textbf{Robustez ante desbalance:} Más confiable que la accuracy simple cuando hay diferencias en la distribución de clases
     \item \textbf{Interpretabilidad:} Proporciona una escala estandarizada fácil de interpretar
     \item \textbf{Validación estadística:} Confirma que el rendimiento del modelo es significativamente mejor que una clasificación aleatoria
 \end{itemize}
 
-El resultado del índice kappa confirma la excelente capacidad discriminativa del modelo desarrollado, validando que las predicciones no se deben al azar sino a patrones reales aprendidos en los datos astronómicos.
+El resultado del índice kappa confirma la excelente capacidad discriminativa del modelo desarrollado, validando que las predicciones no se deben al azar sino a patrones reales aprendidos en los datos.
 
 \subsection{Análisis de la Curva ROC}
 
@@ -945,7 +960,7 @@ Este valor de AUC-ROC de 0.99 indica un rendimiento excelente del modelo, confir
 
 \subsection{Conclusiones del Proyecto}
 
-Este proyecto logró desarrollar exitosamente un sistema de clasificación automática para distinguir entre estrellas y galaxias utilizando datos del Sloan Digital Sky Survey (SDSS). Los resultados obtenidos superaron las expectativas iniciales y demuestran la viabilidad de aplicar técnicas de machine learning a problemas de clasificación astronómica.
+Este proyecto logró desarrollar exitosamente un sistema de clasificación automática para distinguir entre estrellas y galaxias utilizando datos del Sloan Digital Sky Survey (SDSS). Los resultados obtenidos superaron las expectativas iniciales y demuestran la viabilidad de aplicar técnicas de machine learning a problemas de clasificación.
 
 \textbf{Resultados Principales:}
 \begin{itemize}
@@ -956,11 +971,11 @@ Este proyecto logró desarrollar exitosamente un sistema de clasificación autom
 \end{itemize}
 
 \textbf{Impacto Práctico:}
-El modelo final ofrece una solución eficiente para el procesamiento automático de millones de objetos astronómicos, reduciendo significativamente el tiempo y recursos necesarios para la clasificación manual. Su implementación puede acelerar investigaciones en cosmología y astronomía extragaláctica.
+El modelo final ofrece una solución eficiente para el procesamiento automático de millones de objetos astronómicos, reduciendo significativamente el tiempo y recursos necesarios para la clasificación manual.
 
 \subsection{Problemas Enfrentados y Soluciones}
 
-Durante el desarrollo del proyecto se encontraron varios desafíos técnicos significativos que requirieron soluciones específicas y metodológicas:
+Durante el desarrollo del proyecto se encontraron varios desafíos técnicos que requirieron soluciones específicas:
 
 \textbf{1. Tamaño Masivo del Dataset (4 millones de observaciones):}
 \begin{itemize}
@@ -971,7 +986,7 @@ Durante el desarrollo del proyecto se encontraron varios desafíos técnicos sig
 \textbf{2. Alta Dimensionalidad (51 variables originales):}
 \begin{itemize}
     \item \textbf{Problema:} Riesgo de sobreajuste con la dimensionalidad y presencia de variables redundantes o irrelevantes
-    \item \textbf{Solución:} Análisis de correlaciones y selección basada en conocimiento del dominio, reduciendo a 13 variables discriminativas clave
+    \item \textbf{Solución:} Análisis de correlaciones y selección basada en conocimiento de las variables, reduciendo a 13 variables discriminativas clave
 \end{itemize}
 
 \textbf{3. Necesidad de Regularización Adecuada:}
@@ -983,7 +998,7 @@ Durante el desarrollo del proyecto se encontraron varios desafíos técnicos sig
 \textbf{4. Complejidad de Variables Astronómicas:}
 \begin{itemize}
     \item \textbf{Problema:} Dificultad para interpretar parámetros técnicos como radios petrosianos, parámetros de Stokes y diferencias entre magnitudes PSF vs modelo
-    \item \textbf{Solución:} Investigación exhaustiva de literatura astronómica y análisis exploratorio detallado para comprender el significado físico de cada variable
+    \item \textbf{Solución:} Investigación de literatura astronómica y análisis exploratorio detallado para comprender el significado físico de cada variable
 \end{itemize}
 
 \textbf{5. Distribuciones Altamente Sesgadas:}
@@ -993,7 +1008,7 @@ Durante el desarrollo del proyecto se encontraron varios desafíos técnicos sig
 \end{itemize}
 
 \textbf{Reflexión Personal:}
-Este proyecto evidenció la importancia de combinar conocimiento del dominio astronómico con técnicas de machine learning robustas. La principal lección aprendida fue que un preprocesado especializado y una regularización adecuada son fundamentales para obtener modelos que generalicen bien en datos astronómicos reales. El balance entre interpretabilidad, eficiencia computacional y precisión resultó ser crucial para desarrollar una solución práctica y escalable.
+Este proyecto evidenció la importancia de combinar conocimiento de las variables con técnicas de machine learning robustas. La principal lección aprendida fue que un preprocesado especializado y una regularización adecuada son fundamentales para obtener modelos que generalicen bien en datos reales. El balance entre interpretabilidad, eficiencia computacional y precisión resultó ser crucial para desarrollar una solución práctica y escalable.
 
 \newpage
 
